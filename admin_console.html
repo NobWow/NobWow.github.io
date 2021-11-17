@@ -1,0 +1,442 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module admin_console</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>admin_console</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br></font></td></tr></table>
+    <p><tt>Embeddable&nbsp;asynchronous&nbsp;console&nbsp;command&nbsp;prompt&nbsp;with&nbsp;extension&nbsp;support<br>
+Example:<br>
+&nbsp;<br>
+import&nbsp;asyncio<br>
+from&nbsp;admin_console&nbsp;import&nbsp;<a href="#AdminCommandExecutor">AdminCommandExecutor</a>,&nbsp;basic_command_set<br>
+&nbsp;<br>
+async&nbsp;def&nbsp;<a href="#-main">main</a>():<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ace&nbsp;=&nbsp;<a href="#AdminCommandExecutor">AdminCommandExecutor</a>()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#-basic_command_set">basic_command_set</a>(ace)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;await&nbsp;ace.load_extensions()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;print("Terminal.&nbsp;Type&nbsp;help&nbsp;to&nbsp;see&nbsp;the&nbsp;list&nbsp;of&nbsp;commands")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;await&nbsp;ace.prompt_loop()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;print("Exit&nbsp;from&nbsp;command&nbsp;prompt")<br>
+&nbsp;<br>
+&nbsp;<br>
+if&nbsp;__name__&nbsp;==&nbsp;"__main__":<br>
+&nbsp;&nbsp;&nbsp;&nbsp;asyncio.run(<a href="#-main">main</a>())</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="asyncio.html">asyncio</a><br>
+<a href="datetime.html">datetime</a><br>
+</td><td width="25%" valign=top><a href="importlib.html">importlib</a><br>
+<a href="json.html">json</a><br>
+</td><td width="25%" valign=top><a href="logging.html">logging</a><br>
+<a href="os.html">os</a><br>
+</td><td width="25%" valign=top><a href="traceback.html">traceback</a><br>
+<a href="types.html">types</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="admin_console.html#AdminCommand">AdminCommand</a>
+</font></dt><dt><font face="helvetica, arial"><a href="admin_console.html#AdminCommandExecutor">AdminCommandExecutor</a>
+</font></dt><dt><font face="helvetica, arial"><a href="admin_console.html#AdminCommandExtension">AdminCommandExtension</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="AdminCommand">class <strong>AdminCommand</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#AdminCommand">AdminCommand</a>(afunc,&nbsp;name:&nbsp;str,&nbsp;args:&nbsp;list,&nbsp;optargs:&nbsp;list,&nbsp;description:&nbsp;str&nbsp;=&nbsp;'')<br>
+&nbsp;<br>
+<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="AdminCommand-__init__"><strong>__init__</strong></a>(self, afunc, name: str, args: list, optargs: list, description: str = '')</dt><dd><tt>Represents&nbsp;a&nbsp;console&nbsp;command.<br>
+To&nbsp;add&nbsp;a&nbsp;command&nbsp;of&nbsp;an&nbsp;extension,&nbsp;use&nbsp;<a href="#AdminCommandExtension">AdminCommandExtension</a>.add_command(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;afunc,&nbsp;name,&nbsp;args,&nbsp;optargs,&nbsp;description)&nbsp;instead<br>
+Parameters<br>
+----------<br>
+afunc&nbsp;:&nbsp;coroutine<br>
+&nbsp;&nbsp;&nbsp;&nbsp;await&nbsp;afunc(<a href="#AdminCommandExecutor">AdminCommandExecutor</a>,&nbsp;*args)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Coroutine&nbsp;function&nbsp;that&nbsp;represents&nbsp;the&nbsp;command&nbsp;functor&nbsp;and&nbsp;receives&nbsp;parsed&nbsp;arguments<br>
+name&nbsp;:&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Name&nbsp;of&nbsp;the&nbsp;command<br>
+args&nbsp;:&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[(type&nbsp;:&nbsp;class,&nbsp;name&nbsp;:&nbsp;str),&nbsp;...]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;List&nbsp;of&nbsp;the&nbsp;mandatory&nbsp;arguments&nbsp;of&nbsp;the&nbsp;command<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Possible&nbsp;types&nbsp;are:&nbsp;str,&nbsp;int,&nbsp;float,&nbsp;bool,&nbsp;None<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-------------------<br>
+&nbsp;&nbsp;&nbsp;&nbsp;str:&nbsp;a&nbsp;word&nbsp;or&nbsp;a&nbsp;"string"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;int:&nbsp;valid&nbsp;number,&nbsp;123<br>
+&nbsp;&nbsp;&nbsp;&nbsp;float:&nbsp;a&nbsp;number&nbsp;with&nbsp;floating&nbsp;point,&nbsp;123.456<br>
+&nbsp;&nbsp;&nbsp;&nbsp;bool:&nbsp;switch&nbsp;argument,&nbsp;can&nbsp;be&nbsp;yes&nbsp;/&nbsp;no,&nbsp;true&nbsp;/&nbsp;false,&nbsp;y&nbsp;/&nbsp;n<br>
+&nbsp;&nbsp;&nbsp;&nbsp;None:&nbsp;raw&nbsp;string,&nbsp;such&nbsp;an&nbsp;argument&nbsp;could&nbsp;be&nbsp;only&nbsp;the&nbsp;last&nbsp;argument&nbsp;of&nbsp;the&nbsp;command<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cannot&nbsp;be&nbsp;used&nbsp;with&nbsp;at&nbsp;least&nbsp;1&nbsp;argument&nbsp;from&nbsp;optargs<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-------------------<br>
+optargs&nbsp;:&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[(type&nbsp;:&nbsp;class,&nbsp;name&nbsp;:&nbsp;str),&nbsp;...]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;List&nbsp;of&nbsp;the&nbsp;optional&nbsp;arguments&nbsp;of&nbsp;the&nbsp;command<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Types&nbsp;are&nbsp;described&nbsp;in&nbsp;args<br>
+description&nbsp;:&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Description&nbsp;of&nbsp;what&nbsp;this&nbsp;command&nbsp;does.&nbsp;Shows&nbsp;in&nbsp;help</tt></dd></dl>
+
+<dl><dt>async <a name="AdminCommand-execute"><strong>execute</strong></a>(self, executor, args)</dt><dd><tt>Shouldn't&nbsp;be&nbsp;overriden,&nbsp;use&nbsp;afunc&nbsp;to&nbsp;assign&nbsp;a&nbsp;functor&nbsp;to&nbsp;the&nbsp;command</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="AdminCommandExecutor">class <strong>AdminCommandExecutor</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#AdminCommandExecutor">AdminCommandExecutor</a>(stuff:&nbsp;dict&nbsp;=&nbsp;{},&nbsp;use_config=True,&nbsp;logger:&nbsp;logging.Logger&nbsp;=&nbsp;None,&nbsp;extension_path='extensions/')<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;the&nbsp;main&nbsp;class&nbsp;of&nbsp;the&nbsp;library.&nbsp;It&nbsp;handles&nbsp;command&nbsp;execution&nbsp;and&nbsp;extension&nbsp;load/unload<br>
+Firstly,&nbsp;an&nbsp;extensions&nbsp;should&nbsp;be&nbsp;loaded&nbsp;before&nbsp;prompting&nbsp;for&nbsp;commands.<br>
+&nbsp;<br>
+ace&nbsp;=&nbsp;<a href="#AdminCommandExecutor">AdminCommandExecutor</a>()<br>
+await&nbsp;ace.<a href="#AdminCommandExecutor-load_extensions">load_extensions</a>()<br>
+&nbsp;<br>
+Launching&nbsp;a&nbsp;prompt.&nbsp;Waits&nbsp;until&nbsp;exit&nbsp;command&nbsp;is&nbsp;invoked.<br>
+await&nbsp;ace.<a href="#AdminCommandExecutor-prompt_loop">prompt_loop</a>()<br>
+&nbsp;<br>
+Perform&nbsp;a&nbsp;cleanup<br>
+await&nbsp;ace.<a href="#AdminCommandExecutor-full_cleanup">full_cleanup</a>()<br>
+&nbsp;<br>
+Members<br>
+-------<br>
+<a href="#AdminCommandExecutor">AdminCommandExecutor</a>.stuff&nbsp;:&nbsp;dict<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Arbitrary&nbsp;data&nbsp;storage.&nbsp;Can&nbsp;be&nbsp;used&nbsp;to&nbsp;share&nbsp;data&nbsp;between&nbsp;extensions<br>
+<a href="#AdminCommandExecutor">AdminCommandExecutor</a>.commands&nbsp;:&nbsp;dict<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dictionary&nbsp;of&nbsp;a&nbsp;commands<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"name":&nbsp;<a href="#AdminCommand">AdminCommand</a>}<br>
+<a href="#AdminCommandExecutor">AdminCommandExecutor</a>.lang&nbsp;:&nbsp;dict<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dictionary&nbsp;of&nbsp;formattable&nbsp;strings<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'nocmd':&nbsp;'%s:&nbsp;unknown&nbsp;command',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'usage':&nbsp;'Usage:&nbsp;%s',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'invalidarg':&nbsp;'%s&nbsp;is&nbsp;invalid,&nbsp;check&nbsp;your&nbsp;command&nbsp;arguments.',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'toomanyargs':&nbsp;'warning:&nbsp;this&nbsp;command&nbsp;receives&nbsp;%s&nbsp;arguments,&nbsp;you&nbsp;provided&nbsp;%s&nbsp;or&nbsp;more',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'notenoughargs':&nbsp;'not&nbsp;enough&nbsp;arguments:&nbsp;the&nbsp;command&nbsp;receives&nbsp;%s&nbsp;arguments,&nbsp;you&nbsp;provided&nbsp;%s.'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<a href="#AdminCommandExecutor">AdminCommandExecutor</a>.types&nbsp;:&nbsp;dict<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dictionary&nbsp;of&nbsp;typenames<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;str:&nbsp;'word',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int:&nbsp;'n',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;float:&nbsp;'n.n',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bool:&nbsp;'yes&nbsp;/&nbsp;no',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;None:&nbsp;'text...'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<a href="#AdminCommandExecutor">AdminCommandExecutor</a>.extpath&nbsp;:&nbsp;str<br>
+self.<strong>prompt_dispatching</strong>&nbsp;:&nbsp;bool&nbsp;=&nbsp;True<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Set&nbsp;this&nbsp;variable&nbsp;to&nbsp;False&nbsp;to&nbsp;stop&nbsp;<a href="#AdminCommandExecutor-prompt_loop">prompt_loop</a>()&nbsp;after&nbsp;a&nbsp;command&nbsp;dispatch<br>
+self.<strong>promptheader</strong>&nbsp;:&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Command&nbsp;prompt&nbsp;header.&nbsp;Defaults&nbsp;to&nbsp;'nothing'<br>
+self.<strong>promptarrow</strong>&nbsp;:&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Command&nbsp;prompt&nbsp;arrow.&nbsp;Defaults&nbsp;to&nbsp;'&gt;'<br>
+Command&nbsp;prompt&nbsp;header&nbsp;and&nbsp;arrow&nbsp;are&nbsp;combined&nbsp;into&nbsp;a&nbsp;prompt<br>
+self.<strong>history</strong>&nbsp;:&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Last&nbsp;executed&nbsp;commands,&nbsp;can&nbsp;be&nbsp;cycled&nbsp;with&nbsp;an&nbsp;arrow&nbsp;keys.<br>
+self.<strong>ainput</strong>&nbsp;:&nbsp;AsyncRawInput(history=self.<strong>history</strong>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;AsyncRawInput&nbsp;class&nbsp;for&nbsp;reading&nbsp;user&nbsp;input&nbsp;in&nbsp;raw&nbsp;tty&nbsp;mode<br>
+self.<strong>ainput</strong>.ctrl_c&nbsp;=&nbsp;self.<strong>full_cleanup</strong><br>
+&nbsp;&nbsp;&nbsp;&nbsp;Async&nbsp;function&nbsp;for&nbsp;handling&nbsp;Ctrl&nbsp;+&nbsp;C<br>
+self.<strong>prompt_format</strong>&nbsp;=&nbsp;{'bold':&nbsp;True,&nbsp;'fgcolor':&nbsp;colors.GREEN}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Formatting&nbsp;of&nbsp;the&nbsp;prompt&nbsp;header&nbsp;and&nbsp;arrow.<br>
+self.<strong>input_format</strong>&nbsp;=&nbsp;{'fgcolor':&nbsp;10}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Formatting&nbsp;of&nbsp;the&nbsp;user&nbsp;input&nbsp;in&nbsp;terminal<br>
+Others:<br>
+self.<strong>print</strong>&nbsp;=&nbsp;self.<strong>ainput</strong>.writeln<br>
+self.<strong>logger</strong>&nbsp;=&nbsp;logger<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="AdminCommandExecutor-__init__"><strong>__init__</strong></a>(self, stuff: dict = {}, use_config=True, logger: logging.Logger = None, extension_path='extensions/')</dt><dd><tt>Parameters<br>
+----------<br>
+stuff&nbsp;:&nbsp;dict<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Arbitrary&nbsp;data&nbsp;storage<br>
+use_config&nbsp;:&nbsp;bool<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Whether&nbsp;or&nbsp;not&nbsp;a&nbsp;config.json&nbsp;file&nbsp;should&nbsp;be&nbsp;created&nbsp;or&nbsp;loaded&nbsp;in&nbsp;a&nbsp;working&nbsp;directory.&nbsp;Defaults&nbsp;to&nbsp;True<br>
+logger&nbsp;:&nbsp;logging.Logger<br>
+&nbsp;&nbsp;&nbsp;&nbsp;logging.Logger&nbsp;instance&nbsp;to&nbsp;handle&nbsp;all&nbsp;the&nbsp;log&nbsp;messages<br>
+extension_path&nbsp;:&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Relative&nbsp;or&nbsp;absolute&nbsp;path&nbsp;to&nbsp;the&nbsp;extensions&nbsp;directory.&nbsp;Defaults&nbsp;to&nbsp;"extensions/"</tt></dd></dl>
+
+<dl><dt>async <a name="AdminCommandExecutor-dispatch"><strong>dispatch</strong></a>(self, cmdline: str)</dt><dd><tt>Executes&nbsp;a&nbsp;command.&nbsp;Shouldn't&nbsp;be&nbsp;used&nbsp;explicitly.&nbsp;Use&nbsp;<a href="#AdminCommandExecutor-prompt_loop">prompt_loop</a>()&nbsp;instead.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+cmdline&nbsp;:&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;whole&nbsp;line&nbsp;representing&nbsp;a&nbsp;command<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+bool<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Success</tt></dd></dl>
+
+<dl><dt><a name="AdminCommandExecutor-error"><strong>error</strong></a>(self, msg: str)</dt><dd><tt>Shows&nbsp;a&nbsp;red&nbsp;error&nbsp;message&nbsp;in&nbsp;the&nbsp;console&nbsp;and&nbsp;logs.<br>
+ERROR:&nbsp;msg<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+msg&nbsp;:&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Message</tt></dd></dl>
+
+<dl><dt>async <a name="AdminCommandExecutor-full_cleanup"><strong>full_cleanup</strong></a>(self)</dt><dd><tt>Perform&nbsp;cleanup&nbsp;steps&nbsp;in&nbsp;<a href="#AdminCommandExecutor">AdminCommandExecutor</a>.full_cleanup_steps</tt></dd></dl>
+
+<dl><dt><a name="AdminCommandExecutor-info"><strong>info</strong></a>(self, msg: str)</dt><dd><tt>Shows&nbsp;a&nbsp;regular&nbsp;info&nbsp;message&nbsp;in&nbsp;the&nbsp;console&nbsp;and&nbsp;logs.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+msg&nbsp;:&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Message</tt></dd></dl>
+
+<dl><dt><a name="AdminCommandExecutor-load_config"><strong>load_config</strong></a>(self, path: str = 'config.json')</dt><dd><tt>Loads&nbsp;a&nbsp;configuration&nbsp;from&nbsp;a&nbsp;JSON&nbsp;file<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+path&nbsp;:&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Absolute&nbsp;or&nbsp;relative&nbsp;path&nbsp;to&nbsp;the&nbsp;config&nbsp;file.&nbsp;Defaults&nbsp;to&nbsp;"config.json"<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+bool<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Success</tt></dd></dl>
+
+<dl><dt>async <a name="AdminCommandExecutor-load_extension"><strong>load_extension</strong></a>(self, name: str)</dt><dd><tt>Loads&nbsp;a&nbsp;Python&nbsp;script&nbsp;as&nbsp;an&nbsp;extension&nbsp;from&nbsp;its&nbsp;extension&nbsp;path&nbsp;and&nbsp;call&nbsp;await&nbsp;extension_init(<a href="#AdminCommandExtension">AdminCommandExtension</a>)<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+name&nbsp;:&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;extensionless&nbsp;name&nbsp;of&nbsp;a&nbsp;file&nbsp;containing&nbsp;a&nbsp;Python&nbsp;script<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+bool<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Success</tt></dd></dl>
+
+<dl><dt>async <a name="AdminCommandExecutor-load_extensions"><strong>load_extensions</strong></a>(self)</dt><dd><tt>Loads&nbsp;extensions&nbsp;from&nbsp;an&nbsp;extension&nbsp;directory&nbsp;specified&nbsp;in&nbsp;<a href="#AdminCommandExecutor">AdminCommandExecutor</a>.extpath</tt></dd></dl>
+
+<dl><dt><a name="AdminCommandExecutor-log"><strong>log</strong></a>(self, msg: str, level=10)</dt><dd><tt>Shows&nbsp;a&nbsp;log&nbsp;message&nbsp;in&nbsp;the&nbsp;console&nbsp;and&nbsp;logs<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+msg&nbsp;:&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Message<br>
+level&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Level&nbsp;of&nbsp;the&nbsp;log&nbsp;message&nbsp;between&nbsp;0&nbsp;and&nbsp;50</tt></dd></dl>
+
+<dl><dt>async <a name="AdminCommandExecutor-prompt_loop"><strong>prompt_loop</strong></a>(self)</dt><dd><tt>Asynchronously&nbsp;prompt&nbsp;for&nbsp;commands&nbsp;and&nbsp;dispatch&nbsp;them<br>
+Blocks&nbsp;asynchronously&nbsp;until&nbsp;the&nbsp;prompt&nbsp;is&nbsp;closed.<br>
+Prefer&nbsp;launching&nbsp;in&nbsp;asyncio.Task&nbsp;wrapper.</tt></dd></dl>
+
+<dl><dt><a name="AdminCommandExecutor-save_config"><strong>save_config</strong></a>(self, path: str = 'config.json')</dt><dd><tt>Saves&nbsp;a&nbsp;configuration&nbsp;into&nbsp;a&nbsp;JSON&nbsp;file<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+path&nbsp;:&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Absolute&nbsp;or&nbsp;relative&nbsp;path&nbsp;to&nbsp;the&nbsp;config&nbsp;file.&nbsp;Defaults&nbsp;to&nbsp;"config.json"<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+bool<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Success</tt></dd></dl>
+
+<dl><dt>async <a name="AdminCommandExecutor-unload_extension"><strong>unload_extension</strong></a>(self, name: str, keep_dict=False)</dt><dd><tt>Unload&nbsp;an&nbsp;extension&nbsp;and&nbsp;call&nbsp;await&nbsp;extension_cleanup(<a href="#AdminCommandExtension">AdminCommandExtension</a>)<br>
+Parameters<br>
+----------<br>
+name&nbsp;:&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;name&nbsp;of&nbsp;an&nbsp;extension<br>
+keep_dict&nbsp;:&nbsp;bool<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Whether&nbsp;or&nbsp;not&nbsp;this&nbsp;extension&nbsp;should&nbsp;be&nbsp;kept&nbsp;in&nbsp;the&nbsp;list.&nbsp;Defaults&nbsp;to&nbsp;False<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+bool<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Success</tt></dd></dl>
+
+<dl><dt><a name="AdminCommandExecutor-usage"><strong>usage</strong></a>(self, cmdname: str, lang=True)</dt><dd><tt>Get&nbsp;a&nbsp;formatted&nbsp;usage&nbsp;string&nbsp;for&nbsp;the&nbsp;command<br>
+Raises&nbsp;KeyError&nbsp;if&nbsp;the&nbsp;command&nbsp;doesn't&nbsp;exist.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+cmdname&nbsp;:&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Name&nbsp;of&nbsp;the&nbsp;command<br>
+lang&nbsp;:&nbsp;bool<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Whether&nbsp;or&nbsp;not&nbsp;returned&nbsp;string&nbsp;should&nbsp;be&nbsp;formatted&nbsp;through&nbsp;lang['usage']<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Formatted&nbsp;string&nbsp;representing&nbsp;a&nbsp;usage&nbsp;of&nbsp;the&nbsp;command</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="AdminCommandExtension">class <strong>AdminCommandExtension</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#AdminCommandExtension">AdminCommandExtension</a>(ACE,&nbsp;name:&nbsp;str,&nbsp;module:&nbsp;module,&nbsp;logger:&nbsp;logging.Logger&nbsp;=&nbsp;&amp;lt;Logger&nbsp;main&nbsp;(WARNING)&amp;gt;)<br>
+&nbsp;<br>
+<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="AdminCommandExtension-__init__"><strong>__init__</strong></a>(self, ACE, name: str, module: module, logger: logging.Logger = &lt;Logger main (WARNING)&gt;)</dt><dd><tt>Extension&nbsp;data&nbsp;class.&nbsp;Constructed&nbsp;by&nbsp;<a href="#AdminCommandExecutor">AdminCommandExecutor</a>.<br>
+In&nbsp;extension&nbsp;scripts&nbsp;the&nbsp;instance&nbsp;is&nbsp;passed&nbsp;into:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;async&nbsp;def&nbsp;extension_init(<a href="#AdminCommandExtension">AdminCommandExtension</a>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;called&nbsp;when&nbsp;an&nbsp;extension&nbsp;is&nbsp;loaded<br>
+&nbsp;&nbsp;&nbsp;&nbsp;async&nbsp;def&nbsp;extension_cleanup(<a href="#AdminCommandExtension">AdminCommandExtension</a>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;called&nbsp;when&nbsp;an&nbsp;extension&nbsp;is&nbsp;unloaded<br>
+Parameters<br>
+----------<br>
+ACE&nbsp;:&nbsp;<a href="#AdminCommandExecutor">AdminCommandExecutor</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;instance&nbsp;of&nbsp;the&nbsp;<a href="#AdminCommandExecutor">AdminCommandExecutor</a>&nbsp;class&nbsp;holding&nbsp;this&nbsp;extension.<br>
+name&nbsp;:&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;of&nbsp;the&nbsp;extension&nbsp;or&nbsp;extensionless&nbsp;filename&nbsp;of&nbsp;the&nbsp;extension<br>
+module&nbsp;:&nbsp;types.ModuleType<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Python&nbsp;importlib&nbsp;module&nbsp;of&nbsp;the&nbsp;extension<br>
+logger&nbsp;:&nbsp;logging.Logger<br>
+&nbsp;&nbsp;&nbsp;&nbsp;logging.Logger&nbsp;instance&nbsp;attached&nbsp;to&nbsp;an&nbsp;extension</tt></dd></dl>
+
+<dl><dt><a name="AdminCommandExtension-add_command"><strong>add_command</strong></a>(self, afunc, name: str, args: list, optargs: list = [], description: str = '', replace=False)</dt><dd><tt>Registers&nbsp;a&nbsp;command&nbsp;and&nbsp;adds&nbsp;it&nbsp;to&nbsp;the&nbsp;<a href="#AdminCommandExecutor">AdminCommandExecutor</a>.<br>
+Constructs&nbsp;an&nbsp;<a href="#AdminCommand">AdminCommand</a>&nbsp;instance&nbsp;with&nbsp;all&nbsp;the&nbsp;arguments&nbsp;passed.<br>
+Doesn't&nbsp;require&nbsp;<a href="#AdminCommandExtension-sync_local_commands">sync_local_commands</a>()&nbsp;to&nbsp;be&nbsp;run<br>
+Parameters<br>
+----------<br>
+see&nbsp;<a href="#AdminCommand">AdminCommand</a><br>
+replace&nbsp;:&nbsp;bool<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Whether&nbsp;or&nbsp;not&nbsp;the&nbsp;command&nbsp;should&nbsp;be&nbsp;replaced&nbsp;if&nbsp;already&nbsp;exists.&nbsp;Defaults&nbsp;to&nbsp;False<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+bool<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Success</tt></dd></dl>
+
+<dl><dt><a name="AdminCommandExtension-clear_commands"><strong>clear_commands</strong></a>(self)</dt><dd><tt>Clear&nbsp;all&nbsp;the&nbsp;commands&nbsp;registered&nbsp;by&nbsp;this&nbsp;extension<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+bool<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Success</tt></dd></dl>
+
+<dl><dt><a name="AdminCommandExtension-logmsg"><strong>logmsg</strong></a>(self, msg: str, level: int = 20)</dt><dd><tt>Write&nbsp;a&nbsp;message&nbsp;into&nbsp;the&nbsp;log</tt></dd></dl>
+
+<dl><dt><a name="AdminCommandExtension-msg"><strong>msg</strong></a>(self, msg)</dt><dd><tt>Show&nbsp;message&nbsp;in&nbsp;the&nbsp;console&nbsp;with&nbsp;the&nbsp;extension&nbsp;prefix</tt></dd></dl>
+
+<dl><dt><a name="AdminCommandExtension-remove_command"><strong>remove_command</strong></a>(self, name: str, remove_native=False)</dt><dd><tt>Unregisters&nbsp;a&nbsp;command&nbsp;from&nbsp;the&nbsp;<a href="#AdminCommandExtension">AdminCommandExtension</a>&nbsp;and/or&nbsp;from&nbsp;an&nbsp;<a href="#AdminCommandExecutor">AdminCommandExecutor</a><br>
+If&nbsp;remove_native&nbsp;is&nbsp;True,&nbsp;it&nbsp;doesn't&nbsp;check&nbsp;whether&nbsp;or&nbsp;not&nbsp;this&nbsp;command&nbsp;is&nbsp;owned&nbsp;by&nbsp;this&nbsp;extension<br>
+Parameters<br>
+----------<br>
+remove_native&nbsp;:&nbsp;bool<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;False,&nbsp;delete&nbsp;only&nbsp;if&nbsp;this&nbsp;command&nbsp;is&nbsp;owned&nbsp;by&nbsp;self<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+bool<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Success</tt></dd></dl>
+
+<dl><dt><a name="AdminCommandExtension-sync_local_commands"><strong>sync_local_commands</strong></a>(self, overwrite=False)</dt><dd><tt>Adds&nbsp;all&nbsp;the&nbsp;extension&nbsp;commands&nbsp;into&nbsp;<a href="#AdminCommandExecutor">AdminCommandExecutor</a>&nbsp;commands&nbsp;list<br>
+Parameters<br>
+----------<br>
+overwrite&nbsp;:&nbsp;bool<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;True,&nbsp;already&nbsp;existing&nbsp;commands&nbsp;will&nbsp;be&nbsp;replaced<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;False,&nbsp;fails&nbsp;in&nbsp;case&nbsp;when&nbsp;any&nbsp;of&nbsp;the&nbsp;extension&nbsp;commands&nbsp;are&nbsp;overlapping&nbsp;with&nbsp;already&nbsp;existing.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+bool<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Success</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-basic_command_set"><strong>basic_command_set</strong></a>(ACE: admin_console.AdminCommandExecutor)</dt></dl>
+ <dl><dt><a name="-ceil"><strong>ceil</strong></a>(x, /)</dt><dd><tt>Return&nbsp;the&nbsp;ceiling&nbsp;of&nbsp;x&nbsp;as&nbsp;an&nbsp;Integral.<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;the&nbsp;smallest&nbsp;integer&nbsp;&gt;=&nbsp;x.</tt></dd></dl>
+ <dl><dt>async <a name="-main"><strong>main</strong></a>()</dt></dl>
+ <dl><dt><a name="-paginate_list"><strong>paginate_list</strong></a>(list_: list, elemperpage: int, cpage: int) -&gt; (&lt;class 'int'&gt;, &lt;class 'list'&gt;)</dt><dd><tt>Extract&nbsp;a&nbsp;page&nbsp;from&nbsp;a&nbsp;list<br>
+Parameters<br>
+----------<br>
+list_&nbsp;:&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;List&nbsp;of&nbsp;the&nbsp;elements<br>
+elemperpage&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Amount&nbsp;of&nbsp;elements&nbsp;per&nbsp;page<br>
+cpage&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Number&nbsp;of&nbsp;selected&nbsp;page<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+int,&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;amount&nbsp;of&nbsp;pages<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;list&nbsp;page</tt></dd></dl>
+ <dl><dt><a name="-paginate_range"><strong>paginate_range</strong></a>(count: int, elemperpage: int, cpage: int) -&gt; (&lt;class 'int'&gt;, &lt;class 'int'&gt;, &lt;class 'int'&gt;)</dt><dd><tt>Similar&nbsp;to&nbsp;the&nbsp;<a href="#-paginate_list">paginate_list</a>(list,&nbsp;elemperpage,&nbsp;cpage),&nbsp;but&nbsp;creates&nbsp;a&nbsp;range&nbsp;instead&nbsp;of&nbsp;the&nbsp;list<br>
+Parameters<br>
+----------<br>
+count&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Amount&nbsp;of&nbsp;all&nbsp;elements<br>
+elemperpage&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Amount&nbsp;of&nbsp;elements&nbsp;per&nbsp;page<br>
+cpage&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Number&nbsp;of&nbsp;selected&nbsp;page<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+int,&nbsp;int,&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;amount&nbsp;of&nbsp;pages<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ID&nbsp;of&nbsp;the&nbsp;first&nbsp;element&nbsp;in&nbsp;the&nbsp;page<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ID&nbsp;of&nbsp;the&nbsp;last&nbsp;element&nbsp;in&nbsp;the&nbsp;page</tt></dd></dl>
+ <dl><dt><a name="-parse_escapes"><strong>parse_escapes</strong></a>(inp: str)</dt><dd><tt>Convert&nbsp;hexadecimal&nbsp;escape&nbsp;code&nbsp;sequences&nbsp;\xNN&nbsp;into&nbsp;actual&nbsp;symbols</tt></dd></dl>
+ <dl><dt><a name="-str_findall_unescaped"><strong>str_findall_unescaped</strong></a>(str_: str, char: int)</dt></dl>
+ <dl><dt><a name="-validate_convert_args"><strong>validate_convert_args</strong></a>(argtypes: tuple, args: list)</dt><dd><tt>Validate&nbsp;and&nbsp;cast&nbsp;string&nbsp;variables&nbsp;into&nbsp;their&nbsp;specified&nbsp;type&nbsp;from&nbsp;argtypes</tt></dd></dl>
+</td></tr></table>
+</body></html>
