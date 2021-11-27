@@ -8,8 +8,7 @@
 <td valign=bottom>&nbsp;<br>
 <font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>ainput</strong></big></big></font></td
 ><td align=right valign=bottom
-><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/hyper/external/UNWD_Kit/python/admin-console-python/src/admin_console/ainput.py">/home/hyper/external/UNWD_Kit/python/admin-console-python/src/admin_console/ainput.py</a></font></td></tr></table>
-    <p><tt>ainput.py<br>
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br>
 Tools&nbsp;for&nbsp;creating&nbsp;a&nbsp;simple&nbsp;text&nbsp;user&nbsp;interfaces&nbsp;in&nbsp;Unix-like&nbsp;systems&nbsp;with&nbsp;using&nbsp;asyncio<br>
 Doesn't&nbsp;support&nbsp;Windows&nbsp;or&nbsp;any&nbsp;non-POSIX&nbsp;terminals</tt></p>
 <p>
@@ -368,7 +367,8 @@ is&nbsp;a&nbsp;read-only&nbsp;view&nbsp;of&nbsp;the&nbsp;internal&nbsp;mapping.<
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;str<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Converted&nbsp;string<br>
 &nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;arg.replace('<br>
-',&nbsp;'<br>
+',&nbsp;'
+<br>
 ')</tt></dd></dl>
  <dl><dt><a name="-format_term"><strong>format_term</strong></a>(*, bold=False, italic=False, underline=False, blink=False, fgcolor: Union[ainput.colors, int] = None, bgcolor: Union[ainput.colors, int] = None, **unused) -&gt; (&lt;class 'str'&gt;, &lt;class 'str'&gt;)</dt><dd><tt>Returns&nbsp;a&nbsp;tuple(ansi_escape_start:&nbsp;str,&nbsp;ansi_escape_end:&nbsp;str)&nbsp;for&nbsp;specified&nbsp;format<br>
 Tip:&nbsp;"%stext%s"&nbsp;%&nbsp;<a href="#-format_term">format_term</a>(args...)<br>
@@ -395,7 +395,8 @@ bgcolor&nbsp;:&nbsp;<a href="#colors">colors</a>&nbsp;of&nbsp;int&nbsp;=&nbsp;No
 Example<br>
 -------<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#AsyncRawInput">AsyncRawInput</a>.writeln("%sHello&nbsp;world!%s"&nbsp;%&nbsp;<a href="#-format_term">format_term</a>(italic=True,&nbsp;fgcolor=<a href="#colors">colors</a>.GREEN,&nbsp;bgcolor=<a href="#colors">colors</a>.BLACK))</tt></dd></dl>
- <dl><dt><a name="-rawprint"><strong>rawprint</strong></a>(*args, sep=' ', **kwargs)</dt><dd><tt>Standard&nbsp;print&nbsp;wrapper,&nbsp;but&nbsp;with&nbsp;end='<br>
+ <dl><dt><a name="-rawprint"><strong>rawprint</strong></a>(*args, sep=' ', **kwargs)</dt><dd><tt>Standard&nbsp;print&nbsp;wrapper,&nbsp;but&nbsp;with&nbsp;end='
+<br>
 '</tt></dd></dl>
  <dl><dt><a name="-truelen"><strong>truelen</strong></a>(text: str) -&gt; int</dt><dd><tt>Returns&nbsp;amount&nbsp;of&nbsp;visible-on-terminal&nbsp;characters&nbsp;in&nbsp;the&nbsp;string</tt></dd></dl>
 </td></tr></table><p>
