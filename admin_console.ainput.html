@@ -8,7 +8,7 @@
 <td valign=bottom>&nbsp;<br>
 <font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="admin_console.html"><font color="#ffffff">admin_console</font></a>.ainput</strong></big></big></font></td
 ><td align=right valign=bottom
-><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/usr/lib/python3.9/site-packages/admin_console/ainput.py">/usr/lib/python3.9/site-packages/admin_console/ainput.py</a></font></td></tr></table>
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/usr/lib/python3.10/site-packages/admin_console/ainput.py">/usr/lib/python3.10/site-packages/admin_console/ainput.py</a></font></td></tr></table>
     <p><tt>ainput.py<br>
 Tools&nbsp;for&nbsp;creating&nbsp;a&nbsp;simple&nbsp;text&nbsp;user&nbsp;interfaces&nbsp;in&nbsp;Unix-like&nbsp;systems&nbsp;with&nbsp;using&nbsp;asyncio<br>
 Doesn't&nbsp;support&nbsp;Windows&nbsp;or&nbsp;any&nbsp;non-POSIX&nbsp;terminals</tt></p>
@@ -172,41 +172,41 @@ Data descriptors inherited from <a href="logging.html#Filterer">logging.Filterer
 &nbsp;<br>
 Main&nbsp;class&nbsp;for&nbsp;asynchronous&nbsp;input&nbsp;and&nbsp;proper&nbsp;output&nbsp;handling<br>
 &nbsp;<br>
-Before&nbsp;using&nbsp;its&nbsp;features,&nbsp;<a href="#AsyncRawInput">AsyncRawInput</a>.<a href="#AsyncRawInput-prepare">prepare</a>()&nbsp;should&nbsp;be&nbsp;called<br>
-<a href="#AsyncRawInput">AsyncRawInput</a>.<a href="#AsyncRawInput-end">end</a>()&nbsp;is&nbsp;called&nbsp;on&nbsp;<a href="builtins.html#object">object</a>&nbsp;destruction&nbsp;handler<br>
+Before&nbsp;using&nbsp;its&nbsp;features,&nbsp;self.<a href="#AsyncRawInput-prepare">prepare</a>()&nbsp;should&nbsp;be&nbsp;called<br>
+self.<a href="#AsyncRawInput-end">end</a>()&nbsp;is&nbsp;called&nbsp;on&nbsp;<a href="builtins.html#object">object</a>&nbsp;destruction&nbsp;handler<br>
 &nbsp;<br>
-<a href="#AsyncRawInput">AsyncRawInput</a>.loop&nbsp;:&nbsp;asyncio.BaseEventLoop<br>
+self.<strong>loop</strong>&nbsp;:&nbsp;asyncio.BaseEventLoop<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Event&nbsp;loop&nbsp;attached&nbsp;to&nbsp;the&nbsp;IO&nbsp;handler<br>
-<a href="#AsyncRawInput">AsyncRawInput</a>.is_reading&nbsp;:&nbsp;bool<br>
+self.<strong>is_reading</strong>&nbsp;:&nbsp;bool<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Whether&nbsp;or&nbsp;not&nbsp;the&nbsp;user&nbsp;input&nbsp;is&nbsp;currently&nbsp;receiving<br>
-<a href="#AsyncRawInput">AsyncRawInput</a>.stdin&nbsp;:&nbsp;io.TextIOWrapper<br>
+self.<strong>stdin</strong>&nbsp;:&nbsp;io.TextIOWrapper<br>
 &nbsp;&nbsp;&nbsp;&nbsp;File-like&nbsp;<a href="builtins.html#object">object</a>&nbsp;handling&nbsp;the&nbsp;terminal&nbsp;input<br>
-<a href="#AsyncRawInput">AsyncRawInput</a>.stdout&nbsp;:&nbsp;io.TextIOWrapper<br>
+self.<strong>stdout</strong>&nbsp;:&nbsp;io.TextIOWrapper<br>
 &nbsp;&nbsp;&nbsp;&nbsp;File-like&nbsp;<a href="builtins.html#object">object</a>&nbsp;handling&nbsp;the&nbsp;terminal&nbsp;output<br>
-<a href="#AsyncRawInput">AsyncRawInput</a>.read_lastinp&nbsp;:&nbsp;list<br>
+self.<strong>read_lastinp</strong>&nbsp;:&nbsp;list<br>
 &nbsp;&nbsp;&nbsp;&nbsp;List&nbsp;of&nbsp;str,&nbsp;containing&nbsp;each&nbsp;character&nbsp;for&nbsp;a&nbsp;mutable&nbsp;Unicode&nbsp;string<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Represents&nbsp;an&nbsp;unentered&nbsp;user&nbsp;input&nbsp;displaying&nbsp;on&nbsp;the&nbsp;terminal<br>
-<a href="#AsyncRawInput">AsyncRawInput</a>.read_lastprompt&nbsp;:&nbsp;str<br>
+self.<strong>read_lastprompt</strong>&nbsp;:&nbsp;str<br>
 &nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;prompt.&nbsp;Text&nbsp;prepending&nbsp;the&nbsp;user&nbsp;input&nbsp;line.<br>
-&nbsp;&nbsp;&nbsp;&nbsp;To&nbsp;format&nbsp;a&nbsp;prompt,&nbsp;set&nbsp;<a href="#AsyncRawInput">AsyncRawInput</a>.prompt_formats<br>
-<a href="#AsyncRawInput">AsyncRawInput</a>.old_tcattrs&nbsp;:&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;To&nbsp;format&nbsp;a&nbsp;prompt,&nbsp;set&nbsp;self.<strong>prompt_formats</strong><br>
+self.<strong>old_tcattrs</strong>&nbsp;:&nbsp;list<br>
 &nbsp;&nbsp;&nbsp;&nbsp;List&nbsp;of&nbsp;control&nbsp;terminal&nbsp;arguments&nbsp;that&nbsp;have&nbsp;been&nbsp;set&nbsp;before&nbsp;<a href="#AsyncRawInput-prepare">prepare</a>()&nbsp;called<br>
-<a href="#AsyncRawInput">AsyncRawInput</a>.history&nbsp;:&nbsp;list<br>
+self.<strong>history</strong>&nbsp;:&nbsp;list<br>
 &nbsp;&nbsp;&nbsp;&nbsp;List&nbsp;of&nbsp;previous&nbsp;user&nbsp;inputs<br>
-<a href="#AsyncRawInput">AsyncRawInput</a>.history_limit&nbsp;:&nbsp;int<br>
+self.<strong>history_limit</strong>&nbsp;:&nbsp;int<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Threshold&nbsp;of&nbsp;automatic&nbsp;entry&nbsp;deletion&nbsp;of&nbsp;old&nbsp;user&nbsp;inputs<br>
-<a href="#AsyncRawInput">AsyncRawInput</a>.cursor&nbsp;:&nbsp;int<br>
+self.<strong>cursor</strong>&nbsp;:&nbsp;int<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Current&nbsp;position&nbsp;of&nbsp;the&nbsp;user&nbsp;terminal&nbsp;cursor.<br>
-<a href="#AsyncRawInput">AsyncRawInput</a>.echo&nbsp;:&nbsp;bool&nbsp;=&nbsp;True<br>
+self.<strong>echo</strong>&nbsp;:&nbsp;bool&nbsp;=&nbsp;True<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Whether&nbsp;or&nbsp;not&nbsp;the&nbsp;user&nbsp;input&nbsp;is&nbsp;shown&nbsp;on&nbsp;the&nbsp;terminal.&nbsp;Don't&nbsp;modify&nbsp;it&nbsp;manually<br>
-<a href="#AsyncRawInput">AsyncRawInput</a>.ctrl_c&nbsp;:&nbsp;async&nbsp;function<br>
+self.<strong>ctrl_c</strong>&nbsp;:&nbsp;async&nbsp;function<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Async&nbsp;callback&nbsp;that&nbsp;is&nbsp;called&nbsp;when&nbsp;Ctrl&nbsp;+&nbsp;C&nbsp;is&nbsp;pressed&nbsp;in&nbsp;the&nbsp;terminal<br>
-<a href="#AsyncRawInput">AsyncRawInput</a>.keystrokes&nbsp;:&nbsp;dict<br>
+self.<strong>keystrokes</strong>&nbsp;:&nbsp;dict<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Mapping&nbsp;of&nbsp;keystroke&nbsp;handlers.<br>
 &nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;"raw&nbsp;keystroke&nbsp;code":&nbsp;async&nbsp;callable&nbsp;}<br>
-<a href="#AsyncRawInput">AsyncRawInput</a>.prompt_formats&nbsp;:&nbsp;tuple(str,&nbsp;str)<br>
+self.<strong>prompt_formats</strong>&nbsp;:&nbsp;tuple(str,&nbsp;str)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Formatting&nbsp;header,&nbsp;footer&nbsp;pair&nbsp;for&nbsp;displaying&nbsp;a&nbsp;prompt.<br>
-<a href="#AsyncRawInput">AsyncRawInput</a>.input_formats&nbsp;:&nbsp;tuple(str,&nbsp;str)<br>
+self.<strong>input_formats</strong>&nbsp;:&nbsp;tuple(str,&nbsp;str)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Formatting&nbsp;header,&nbsp;footer&nbsp;pair&nbsp;for&nbsp;displaying&nbsp;a&nbsp;user&nbsp;input<br>&nbsp;</tt></td></tr>
 <tr><td>&nbsp;</td>
 <td width="100%">Methods defined here:<br>
@@ -412,6 +412,7 @@ Example<br>
 <strong>NOTSET</strong> = 0<br>
 <strong>Union</strong> = typing.Union<br>
 <strong>WARNING</strong> = 30<br>
+<strong>__warningregistry__</strong> = {'version': 0}<br>
 <strong>ansi_escape</strong> = re.compile('(\\x9B|\\x1B\\[)[0-?]*[ -\\/]*[@-~]')<br>
 <strong>do_backspace</strong> = '<font color="#c040c0">\x08\x1b</font>[0K'<br>
 <strong>loop</strong> = &lt;_UnixSelectorEventLoop running=False closed=False debug=False&gt;</td></tr></table>
