@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: package aiohndchain</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>aiohndchain</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/usr/lib/python3.10/site-packages/aiohndchain/__init__.py">/usr/lib/python3.10/site-packages/aiohndchain/__init__.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Package Contents</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="aiohndchain.html#AIOHandlerChain">AIOHandlerChain</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="AIOHandlerChain">class <strong>AIOHandlerChain</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#AIOHandlerChain">AIOHandlerChain</a>(*,&nbsp;event:&nbsp;Optional[asyncio.locks.Event]&nbsp;=&nbsp;None,&nbsp;lock:&nbsp;Optional[asyncio.locks.Lock]&nbsp;=&nbsp;None,&nbsp;cancellable=True)<br>
+&nbsp;<br>
+An&nbsp;implementation&nbsp;of&nbsp;event,&nbsp;but&nbsp;more&nbsp;advanced&nbsp;than&nbsp;regular&nbsp;asyncio.Event.<br>
+Before&nbsp;emitting&nbsp;an&nbsp;underlying&nbsp;asyncio.Event,&nbsp;handler&nbsp;chain&nbsp;is&nbsp;executed,<br>
+and&nbsp;if&nbsp;just&nbsp;one&nbsp;handler&nbsp;returns&nbsp;False,&nbsp;other&nbsp;handlers&nbsp;won't&nbsp;be&nbsp;executed<br>
+If&nbsp;one&nbsp;handler&nbsp;returns&nbsp;True,&nbsp;all&nbsp;handlers&nbsp;will&nbsp;be&nbsp;executed&nbsp;regardless&nbsp;if<br>
+next&nbsp;handlers&nbsp;returns&nbsp;False.<br>
+Also&nbsp;possible&nbsp;to&nbsp;wait&nbsp;on&nbsp;the&nbsp;event&nbsp;before&nbsp;the&nbsp;handlers&nbsp;called,&nbsp;or&nbsp;after<br>
+the&nbsp;handlers.&nbsp;There&nbsp;are&nbsp;two&nbsp;relying&nbsp;asyncio.Condition&nbsp;that&nbsp;are&nbsp;triggered<br>
+during&nbsp;emitting.<br>
+This&nbsp;class&nbsp;is&nbsp;callable,&nbsp;producing&nbsp;a&nbsp;coroutine&nbsp;for&nbsp;emitting&nbsp;an&nbsp;event<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt>async <a name="AIOHandlerChain-__call__"><strong>__call__</strong></a>(self, *args, **kwargs) -&gt; bool</dt><dd><tt>Shorthand&nbsp;for&nbsp;self.<a href="#AIOHandlerChain-emit">emit</a>(*args,&nbsp;**kwargs)</tt></dd></dl>
+
+<dl><dt><a name="AIOHandlerChain-__init__"><strong>__init__</strong></a>(self, *, event: Optional[asyncio.locks.Event] = None, lock: Optional[asyncio.locks.Lock] = None, cancellable=True)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="AIOHandlerChain-add_handler"><strong>add_handler</strong></a>(self, afunc: Callable[[Any], Optional[Coroutine[Any, Any, Any]]]) -&gt; bool</dt><dd><tt>Add&nbsp;callable&nbsp;or&nbsp;a&nbsp;coroutine&nbsp;function&nbsp;to&nbsp;this&nbsp;handler&nbsp;chain.<br>
+Return&nbsp;True&nbsp;if&nbsp;successful,&nbsp;False&nbsp;otherwise</tt></dd></dl>
+
+<dl><dt><a name="AIOHandlerChain-debug_print"><strong>debug_print</strong></a>(self, msg: str)</dt></dl>
+
+<dl><dt>async <a name="AIOHandlerChain-emit"><strong>emit</strong></a>(self, *args, **kwargs) -&gt; bool</dt><dd><tt>Execute&nbsp;the&nbsp;handler&nbsp;chain&nbsp;and&nbsp;proceed&nbsp;with&nbsp;underlying&nbsp;event&nbsp;trigger<br>
+in&nbsp;case&nbsp;of&nbsp;successful&nbsp;execution.&nbsp;Also&nbsp;triggers&nbsp;other&nbsp;tasks&nbsp;that&nbsp;are<br>
+waiting&nbsp;for&nbsp;this&nbsp;event&nbsp;with&nbsp;self.<a href="#AIOHandlerChain-wait_and_handle">wait_and_handle</a>()<br>
+Before&nbsp;acquiring&nbsp;the&nbsp;lock,&nbsp;it&nbsp;waits&nbsp;until&nbsp;this&nbsp;lock&nbsp;is&nbsp;completely&nbsp;unlocked.<br>
+Note:&nbsp;this&nbsp;function&nbsp;will&nbsp;block&nbsp;until&nbsp;all&nbsp;the&nbsp;handlers&nbsp;are&nbsp;executed.</tt></dd></dl>
+
+<dl><dt><a name="AIOHandlerChain-emit_and_handle"><strong>emit_and_handle</strong></a>(self, *args, before=False, kwargs: Optional[dict] = None) -&gt; AsyncGenerator[Any, Callable[[Optional[bool]], Tuple[bool, list, dict]]]</dt><dd><tt>Unlike&nbsp;<a href="#AIOHandlerChain-wait_and_handle">wait_and_handle</a>(),&nbsp;it&nbsp;doesn't&nbsp;block&nbsp;until&nbsp;an&nbsp;event&nbsp;occurs.&nbsp;Instead,&nbsp;it&nbsp;emits<br>
+an&nbsp;event&nbsp;and&nbsp;handles&nbsp;it&nbsp;in&nbsp;some&nbsp;way&nbsp;when&nbsp;the&nbsp;handlers&nbsp;are&nbsp;not&nbsp;necessarily&nbsp;required<br>
+to&nbsp;be&nbsp;triggered.&nbsp;Using&nbsp;this&nbsp;way&nbsp;of&nbsp;event&nbsp;emission&nbsp;gives&nbsp;an&nbsp;opportunity&nbsp;to&nbsp;determine<br>
+whether&nbsp;or&nbsp;not&nbsp;this&nbsp;event&nbsp;emission&nbsp;is&nbsp;successful.<br>
+Returns&nbsp;a&nbsp;handle&nbsp;which&nbsp;works&nbsp;in&nbsp;the&nbsp;same&nbsp;way&nbsp;as&nbsp;by&nbsp;<a href="#AIOHandlerChain-wait_and_handle">wait_and_handle</a>()</tt></dd></dl>
+
+<dl><dt><a name="AIOHandlerChain-isCancellable"><strong>isCancellable</strong></a>(self) -&gt; bool</dt><dd><tt>Return&nbsp;True&nbsp;or&nbsp;False&nbsp;whether&nbsp;or&nbsp;not&nbsp;this&nbsp;handler&nbsp;chain&nbsp;is&nbsp;cancellable.<br>
+This&nbsp;is&nbsp;determined&nbsp;at&nbsp;the&nbsp;<a href="builtins.html#object">object</a>'s&nbsp;creation&nbsp;as&nbsp;cancellable&nbsp;keyword-only&nbsp;argument.</tt></dd></dl>
+
+<dl><dt>async <a name="AIOHandlerChain-on_error"><strong>on_error</strong></a>(self, exc: Exception, *args, **kwargs)</dt><dd><tt>Executed&nbsp;by&nbsp;<a href="#AIOHandlerChain-emit">emit</a>()&nbsp;in&nbsp;case&nbsp;of&nbsp;an&nbsp;exception&nbsp;in&nbsp;it</tt></dd></dl>
+
+<dl><dt>async <a name="AIOHandlerChain-on_failure"><strong>on_failure</strong></a>(self, *args, **kwargs)</dt><dd><tt>Executed&nbsp;by&nbsp;<a href="#AIOHandlerChain-emit">emit</a>()&nbsp;in&nbsp;case&nbsp;of&nbsp;cancellation</tt></dd></dl>
+
+<dl><dt>async <a name="AIOHandlerChain-on_handler_error"><strong>on_handler_error</strong></a>(self, hndid: int, exc: Exception, *args, **kwargs)</dt><dd><tt>Executed&nbsp;by&nbsp;<a href="#AIOHandlerChain-emit">emit</a>()&nbsp;in&nbsp;case&nbsp;if&nbsp;one&nbsp;of&nbsp;the&nbsp;handlers&nbsp;fails&nbsp;to&nbsp;execute</tt></dd></dl>
+
+<dl><dt>async <a name="AIOHandlerChain-on_success"><strong>on_success</strong></a>(self, *args, **kwargs)</dt><dd><tt>Executed&nbsp;by&nbsp;<a href="#AIOHandlerChain-emit">emit</a>()&nbsp;in&nbsp;case&nbsp;of&nbsp;successful&nbsp;execution</tt></dd></dl>
+
+<dl><dt><a name="AIOHandlerChain-remove_handler"><strong>remove_handler</strong></a>(self, afunc: Callable) -&gt; bool</dt><dd><tt>Remove&nbsp;coroutine&nbsp;function&nbsp;from&nbsp;this&nbsp;handler&nbsp;chain.<br>
+Return&nbsp;True&nbsp;if&nbsp;successful,&nbsp;False&nbsp;otherwise</tt></dd></dl>
+
+<dl><dt><a name="AIOHandlerChain-wait_and_handle"><strong>wait_and_handle</strong></a>(self, *, before=False) -&gt; AsyncGenerator[Any, Callable[[Optional[bool]], Tuple[bool, list, dict]]]</dt><dd><tt>Blocks&nbsp;until&nbsp;this&nbsp;event&nbsp;emits&nbsp;and&nbsp;returns&nbsp;a&nbsp;context&nbsp;manager&nbsp;with&nbsp;handle&nbsp;after<br>
+the&nbsp;handler&nbsp;chain.<br>
+The&nbsp;handle&nbsp;of&nbsp;returned&nbsp;context&nbsp;manager&nbsp;is&nbsp;callable:&nbsp;it&nbsp;returns&nbsp;a&nbsp;tuple&nbsp;with<br>
+3&nbsp;values:&nbsp;bool,&nbsp;list,&nbsp;dict<br>
+First&nbsp;is&nbsp;True&nbsp;if&nbsp;this&nbsp;event&nbsp;is&nbsp;not&nbsp;cancelled,&nbsp;False&nbsp;otherwise<br>
+The&nbsp;handle&nbsp;can&nbsp;set&nbsp;the&nbsp;state&nbsp;of&nbsp;the&nbsp;execution:&nbsp;pass&nbsp;False&nbsp;to&nbsp;cancel&nbsp;this&nbsp;event,<br>
+and&nbsp;True&nbsp;to&nbsp;force&nbsp;this&nbsp;event&nbsp;to&nbsp;be&nbsp;dispatched&nbsp;successfully.<br>
+Others&nbsp;are&nbsp;positioned&nbsp;arguments&nbsp;and&nbsp;keyword&nbsp;arguments&nbsp;passed&nbsp;by&nbsp;<a href="#AIOHandlerChain-emit">emit</a>().<br>
+If&nbsp;before=True,&nbsp;waits&nbsp;until&nbsp;this&nbsp;event&nbsp;emits&nbsp;before&nbsp;executing&nbsp;event&nbsp;handlers,<br>
+in&nbsp;this&nbsp;case&nbsp;when&nbsp;False&nbsp;is&nbsp;passed&nbsp;into&nbsp;handle,&nbsp;an&nbsp;entire&nbsp;handler&nbsp;chain&nbsp;won't<br>
+be&nbsp;executed&nbsp;and&nbsp;this&nbsp;event&nbsp;will&nbsp;be&nbsp;cancelled.</tt></dd></dl>
+
+<dl><dt>async <a name="AIOHandlerChain-wait_for_successful"><strong>wait_for_successful</strong></a>(self)</dt><dd><tt>Blocks&nbsp;until&nbsp;this&nbsp;event&nbsp;emits&nbsp;successfully.<br>
+Invokes&nbsp;wait()&nbsp;method&nbsp;on&nbsp;underlying&nbsp;event.</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>Any</strong> = typing.Any<br>
+<strong>AsyncGenerator</strong> = typing.AsyncGenerator<br>
+<strong>Callable</strong> = typing.Callable<br>
+<strong>Coroutine</strong> = typing.Coroutine<br>
+<strong>MutableSequence</strong> = typing.MutableSequence<br>
+<strong>Optional</strong> = typing.Optional<br>
+<strong>Tuple</strong> = typing.Tuple</td></tr></table>
+</body></html>
