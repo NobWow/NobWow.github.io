@@ -75,7 +75,8 @@ if&nbsp;__name__&nbsp;==&nbsp;"__main__":<br>
 &nbsp;<br>
 Represents&nbsp;a&nbsp;console&nbsp;command.<br>
 To&nbsp;add&nbsp;a&nbsp;command&nbsp;of&nbsp;an&nbsp;extension,&nbsp;use&nbsp;<a href="#AdminCommandExtension">AdminCommandExtension</a>.add_command(<br>
-&nbsp;&nbsp;&nbsp;&nbsp;afunc,&nbsp;name,&nbsp;args,&nbsp;optargs,&nbsp;description)&nbsp;instead<br>&nbsp;</tt></td></tr>
+&nbsp;&nbsp;&nbsp;&nbsp;afunc,&nbsp;name,&nbsp;args,&nbsp;optargs,&nbsp;description)&nbsp;instead<br>
+Emits&nbsp;<a href="#AdminCommandExecutor">AdminCommandExecutor</a>.cmdexec_event,&nbsp;<a href="#AdminCommandExecutor">AdminCommandExecutor</a>.cmdtab_event<br>&nbsp;</tt></td></tr>
 <tr><td>&nbsp;</td>
 <td width="100%">Methods defined here:<br>
 <dl><dt><a name="AdminCommand-__init__"><strong>__init__</strong></a>(self, afunc, name: str, args: Sequence[Tuple[Union[str, int, float, bool, NoneType], str]], optargs: Sequence[Tuple[Union[str, int, float, bool, NoneType], str]], description: str = '', atabcomplete: Optional[Awaitable[Sequence[str]]] = None)</dt><dd><tt>Parameters<br>
@@ -157,6 +158,23 @@ extension_path&nbsp;:&nbsp;str<br>
 
 <hr>
 Methods inherited from <a href="admin_console.html#AdminCommandExecutor">AdminCommandExecutor</a>:<br>
+<dl><dt><a name="AdminCommandEWrapper-add_command"><strong>add_command</strong></a>(self, afunc: Callable[[Any], Coroutine[Any, Any, Any]], name: str, args: Sequence[Tuple[Type, str]] = (), optargs: Sequence[Tuple[Type, str]] = (), description: str = '', atabcomplete: Optional[Callable[[Any], Coroutine[Any, Any, Any]]] = None) -&gt; bool</dt><dd><tt>Constructs&nbsp;an&nbsp;<a href="#AdminCommand">AdminCommand</a>&nbsp;instance&nbsp;with&nbsp;all&nbsp;the&nbsp;arguments&nbsp;passed.<br>
+Adds&nbsp;the&nbsp;command&nbsp;to&nbsp;the&nbsp;first&nbsp;layer&nbsp;of&nbsp;the&nbsp;chainmap<br>
+Emits&nbsp;cmdadd_event&nbsp;asynchronously.<br>
+&nbsp;<br>
+Note<br>
+----<br>
+This&nbsp;function&nbsp;will&nbsp;be&nbsp;transformed&nbsp;into&nbsp;an&nbsp;async&nbsp;function&nbsp;in&nbsp;the&nbsp;future&nbsp;versions<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+see&nbsp;<a href="#AdminCommand">AdminCommand</a><br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+bool<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Success</tt></dd></dl>
+
 <dl><dt>async <a name="AdminCommandEWrapper-dispatch"><strong>dispatch</strong></a>(self, cmdline: str) -&gt; bool</dt><dd><tt>Executes&nbsp;a&nbsp;command.&nbsp;Shouldn't&nbsp;be&nbsp;used&nbsp;explicitly.&nbsp;Use&nbsp;<a href="#AdminCommandEWrapper-prompt_loop">prompt_loop</a>()&nbsp;instead.<br>
 &nbsp;<br>
 Parameters<br>
@@ -199,6 +217,7 @@ bool<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Success</tt></dd></dl>
 
 <dl><dt>async <a name="AdminCommandEWrapper-load_extension"><strong>load_extension</strong></a>(self, name: str) -&gt; bool</dt><dd><tt>Loads&nbsp;a&nbsp;Python&nbsp;script&nbsp;as&nbsp;an&nbsp;extension&nbsp;from&nbsp;its&nbsp;extension&nbsp;path&nbsp;and&nbsp;call&nbsp;await&nbsp;extension_init(<a href="#AdminCommandExtension">AdminCommandExtension</a>)<br>
+Emits&nbsp;extload_event.<br>
 &nbsp;<br>
 Parameters<br>
 ----------<br>
@@ -251,6 +270,23 @@ Partially&nbsp;copies&nbsp;the&nbsp;Python&nbsp;<a href="#AdminCommandEWrapper-p
 Blocks&nbsp;asynchronously&nbsp;until&nbsp;the&nbsp;prompt&nbsp;is&nbsp;closed.<br>
 Prefer&nbsp;launching&nbsp;in&nbsp;asyncio.Task&nbsp;wrapper.</tt></dd></dl>
 
+<dl><dt><a name="AdminCommandEWrapper-remove_command"><strong>remove_command</strong></a>(self, name: str)</dt><dd><tt>Permanently&nbsp;removes&nbsp;the&nbsp;command&nbsp;from&nbsp;the&nbsp;chainmap.<br>
+Emits&nbsp;cmdrm_event&nbsp;asynchronously.<br>
+&nbsp;<br>
+Note<br>
+----<br>
+This&nbsp;function&nbsp;will&nbsp;be&nbsp;transformed&nbsp;into&nbsp;an&nbsp;async&nbsp;function&nbsp;in&nbsp;the&nbsp;future&nbsp;versions<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+name&nbsp;:&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;of&nbsp;the&nbsp;command<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+bool<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Success</tt></dd></dl>
+
 <dl><dt><a name="AdminCommandEWrapper-save_config"><strong>save_config</strong></a>(self, path: str = 'config.json') -&gt; bool</dt><dd><tt>Saves&nbsp;a&nbsp;configuration&nbsp;into&nbsp;a&nbsp;JSON&nbsp;file<br>
 &nbsp;<br>
 Parameters<br>
@@ -264,6 +300,8 @@ bool<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Success</tt></dd></dl>
 
 <dl><dt>async <a name="AdminCommandEWrapper-unload_extension"><strong>unload_extension</strong></a>(self, name: str, keep_dict=False) -&gt; bool</dt><dd><tt>Unload&nbsp;an&nbsp;extension&nbsp;and&nbsp;call&nbsp;await&nbsp;extension_cleanup(<a href="#AdminCommandExtension">AdminCommandExtension</a>)<br>
+Emits&nbsp;extunload_event.<br>
+&nbsp;<br>
 Parameters<br>
 ----------<br>
 name&nbsp;:&nbsp;str<br>
@@ -307,7 +345,7 @@ Data descriptors inherited from <a href="admin_console.html#AdminCommandExecutor
 <font color="#000000" face="helvetica, arial"><a name="AdminCommandExecutor">class <strong>AdminCommandExecutor</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
     
 <tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
-<td colspan=2><tt><a href="#AdminCommandExecutor">AdminCommandExecutor</a>(stuff:&nbsp;Mapping&nbsp;=&nbsp;{},&nbsp;use_config=True,&nbsp;logger:&nbsp;logging.Logger&nbsp;=&nbsp;None,&nbsp;extension_path='extensions/')<br>
+<td colspan=2><tt><a href="#AdminCommandExecutor">AdminCommandExecutor</a>(stuff:&nbsp;Optional[Mapping]&nbsp;=&nbsp;None,&nbsp;use_config=True,&nbsp;logger:&nbsp;logging.Logger&nbsp;=&nbsp;None,&nbsp;extension_path='extensions/')<br>
 &nbsp;<br>
 This&nbsp;is&nbsp;the&nbsp;main&nbsp;class&nbsp;of&nbsp;the&nbsp;library.&nbsp;It&nbsp;handles&nbsp;command&nbsp;execution&nbsp;and&nbsp;extension&nbsp;load/unload<br>
 Firstly,&nbsp;an&nbsp;extensions&nbsp;should&nbsp;be&nbsp;loaded&nbsp;before&nbsp;prompting&nbsp;for&nbsp;commands.<br>
@@ -362,7 +400,7 @@ self.<strong>ainput</strong>.ctrl_c&nbsp;=&nbsp;self.<strong>full_cleanup</stron
 &nbsp;&nbsp;&nbsp;&nbsp;Async&nbsp;function&nbsp;for&nbsp;handling&nbsp;Ctrl&nbsp;+&nbsp;C<br>
 self.<strong>disabledCmd</strong>&nbsp;:&nbsp;<a href="#AdminCommand">AdminCommand</a><br>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#AdminCommand">AdminCommand</a>&nbsp;that&nbsp;alerts&nbsp;the&nbsp;user&nbsp;that&nbsp;this&nbsp;command&nbsp;is&nbsp;disabled&nbsp;by&nbsp;the&nbsp;system<br>
-&nbsp;&nbsp;&nbsp;&nbsp;Used&nbsp;by&nbsp;<a href="#AdminCommandExtension">AdminCommandExtension</a>.remove_command(name)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Used&nbsp;by&nbsp;<a href="#AdminCommandExtension">AdminCommandExtension</a>.<a href="#AdminCommandExecutor-remove_command">remove_command</a>(name)<br>
 self.<strong>prompt_format</strong>&nbsp;=&nbsp;{'bold':&nbsp;True,&nbsp;'fgcolor':&nbsp;colors.GREEN}<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Formatting&nbsp;of&nbsp;the&nbsp;prompt&nbsp;header&nbsp;and&nbsp;arrow.<br>
 self.<strong>input_format</strong>&nbsp;=&nbsp;{'fgcolor':&nbsp;10}<br>
@@ -373,12 +411,37 @@ self.<strong>tab_complete_tuple</strong>&nbsp;=&nbsp;tuple()<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Contains&nbsp;last&nbsp;argument&nbsp;suggestions&nbsp;on&nbsp;tab&nbsp;complete&nbsp;call<br>
 self.<strong>tab_complete_id</strong>&nbsp;=&nbsp;0<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Contains&nbsp;currently&nbsp;cycled&nbsp;element&nbsp;ID&nbsp;in&nbsp;self.<strong>tab_complete_tuple</strong><br>
+&nbsp;<br>
+Events<br>
+self.<strong>events</strong>&nbsp;:&nbsp;collections.defaultdict(AIOHandlerChain)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Main&nbsp;pool&nbsp;of&nbsp;events.&nbsp;Can&nbsp;be&nbsp;used&nbsp;to&nbsp;store&nbsp;custom&nbsp;events.<br>
+self.<strong>cmdexec_event</strong>&nbsp;:&nbsp;AIOHandlerChain<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Arguments:&nbsp;(cmd:&nbsp;<a href="#AdminCommand">AdminCommand</a>,&nbsp;executor:&nbsp;Union[<a href="#AdminCommandExecutor">AdminCommandExecutor</a>,&nbsp;<a href="#AdminCommandEWrapper">AdminCommandEWrapper</a>],&nbsp;args:&nbsp;Sequence[Any])<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Emits&nbsp;when&nbsp;a&nbsp;command&nbsp;is&nbsp;executed&nbsp;through&nbsp;specific&nbsp;executor&nbsp;and&nbsp;with&nbsp;parsed&nbsp;arguments.&nbsp;Cancellable.<br>
+self.<strong>cmdtab_event</strong>&nbsp;:&nbsp;AIOHandlerChain<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Arguments:&nbsp;(cmd:&nbsp;<a href="#AdminCommand">AdminCommand</a>,&nbsp;executor:&nbsp;Union[<a href="#AdminCommandExecutor">AdminCommandExecutor</a>,&nbsp;<a href="#AdminCommandEWrapper">AdminCommandEWrapper</a>],&nbsp;args:&nbsp;Sequence[Any])<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Keyword&nbsp;arguments&nbsp;are&nbsp;received&nbsp;from&nbsp;handlers:&nbsp;{'override':&nbsp;Sequence[str]}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Emits&nbsp;when&nbsp;TAB&nbsp;key&nbsp;is&nbsp;pressed&nbsp;with&nbsp;this&nbsp;command.&nbsp;Arguments&nbsp;are&nbsp;parsed&nbsp;until&nbsp;the&nbsp;text&nbsp;cursor.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Cancellable.&nbsp;Set&nbsp;'override'&nbsp;in&nbsp;keyword&nbsp;argument&nbsp;dictionary&nbsp;to&nbsp;explicitly&nbsp;set&nbsp;the&nbsp;list&nbsp;of&nbsp;suggested&nbsp;strings.<br>
+self.<strong>cmdadd_event</strong>&nbsp;:&nbsp;AIOHandlerChain<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Arguments:&nbsp;(name:&nbsp;str,&nbsp;args:&nbsp;Sequence[(Type,&nbsp;name)],&nbsp;optargs:&nbsp;Sequence[(Type,&nbsp;name)],&nbsp;description:&nbsp;str)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Emits&nbsp;when&nbsp;an&nbsp;extension&nbsp;adds&nbsp;the&nbsp;command&nbsp;or&nbsp;self.<strong>add_command</strong>&nbsp;is&nbsp;called.&nbsp;Emits&nbsp;asynchronously&nbsp;since&nbsp;<a href="#AdminCommandExtension">AdminCommandExtension</a>.add_command&nbsp;is&nbsp;not&nbsp;async.&nbsp;Not&nbsp;cancellable.<br>
+self.<strong>cmdrm_event</strong>&nbsp;:&nbsp;AIOHandlerChain<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Arguments:&nbsp;(name:&nbsp;str)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Emits&nbsp;when&nbsp;an&nbsp;extension&nbsp;removes&nbsp;the&nbsp;command&nbsp;or&nbsp;self.<strong>remove_command</strong>&nbsp;is&nbsp;called.&nbsp;Emits&nbsp;asynchronously&nbsp;since&nbsp;<a href="#AdminCommandExtension">AdminCommandExtension</a>.remove_command&nbsp;is&nbsp;not&nbsp;async.&nbsp;Not&nbsp;cancellable.<br>
+self.<strong>extload_event</strong>&nbsp;:&nbsp;AIOHandlerChain<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Arguments:&nbsp;(name:&nbsp;str)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Emits&nbsp;when&nbsp;an&nbsp;extension&nbsp;is&nbsp;loading.&nbsp;Cancellable.<br>
+self.<strong>extunload_event</strong>&nbsp;:&nbsp;AIOHandlerChain<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Arguments:&nbsp;(name:&nbsp;str)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Emits&nbsp;when&nbsp;an&nbsp;extension&nbsp;is&nbsp;unloading.&nbsp;Cancellable.<br>
+&nbsp;<br>
 Others:<br>
 self.<strong>print</strong>&nbsp;=&nbsp;self.<strong>ainput</strong>.writeln<br>
 self.<strong>logger</strong>&nbsp;=&nbsp;logger<br>&nbsp;</tt></td></tr>
 <tr><td>&nbsp;</td>
 <td width="100%">Methods defined here:<br>
-<dl><dt><a name="AdminCommandExecutor-__init__"><strong>__init__</strong></a>(self, stuff: Mapping = {}, use_config=True, logger: logging.Logger = None, extension_path='extensions/')</dt><dd><tt>Parameters<br>
+<dl><dt><a name="AdminCommandExecutor-__init__"><strong>__init__</strong></a>(self, stuff: Optional[Mapping] = None, use_config=True, logger: logging.Logger = None, extension_path='extensions/')</dt><dd><tt>Parameters<br>
 ----------<br>
 stuff&nbsp;:&nbsp;dict<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Arbitrary&nbsp;data&nbsp;storage<br>
@@ -388,6 +451,23 @@ logger&nbsp;:&nbsp;logging.Logger<br>
 &nbsp;&nbsp;&nbsp;&nbsp;logging.Logger&nbsp;instance&nbsp;to&nbsp;handle&nbsp;all&nbsp;the&nbsp;log&nbsp;messages<br>
 extension_path&nbsp;:&nbsp;str<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Relative&nbsp;or&nbsp;absolute&nbsp;path&nbsp;to&nbsp;the&nbsp;extensions&nbsp;directory.&nbsp;Defaults&nbsp;to&nbsp;"extensions/"</tt></dd></dl>
+
+<dl><dt><a name="AdminCommandExecutor-add_command"><strong>add_command</strong></a>(self, afunc: Callable[[Any], Coroutine[Any, Any, Any]], name: str, args: Sequence[Tuple[Type, str]] = (), optargs: Sequence[Tuple[Type, str]] = (), description: str = '', atabcomplete: Optional[Callable[[Any], Coroutine[Any, Any, Any]]] = None) -&gt; bool</dt><dd><tt>Constructs&nbsp;an&nbsp;<a href="#AdminCommand">AdminCommand</a>&nbsp;instance&nbsp;with&nbsp;all&nbsp;the&nbsp;arguments&nbsp;passed.<br>
+Adds&nbsp;the&nbsp;command&nbsp;to&nbsp;the&nbsp;first&nbsp;layer&nbsp;of&nbsp;the&nbsp;chainmap<br>
+Emits&nbsp;cmdadd_event&nbsp;asynchronously.<br>
+&nbsp;<br>
+Note<br>
+----<br>
+This&nbsp;function&nbsp;will&nbsp;be&nbsp;transformed&nbsp;into&nbsp;an&nbsp;async&nbsp;function&nbsp;in&nbsp;the&nbsp;future&nbsp;versions<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+see&nbsp;<a href="#AdminCommand">AdminCommand</a><br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+bool<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Success</tt></dd></dl>
 
 <dl><dt>async <a name="AdminCommandExecutor-dispatch"><strong>dispatch</strong></a>(self, cmdline: str) -&gt; bool</dt><dd><tt>Executes&nbsp;a&nbsp;command.&nbsp;Shouldn't&nbsp;be&nbsp;used&nbsp;explicitly.&nbsp;Use&nbsp;<a href="#AdminCommandExecutor-prompt_loop">prompt_loop</a>()&nbsp;instead.<br>
 &nbsp;<br>
@@ -431,6 +511,7 @@ bool<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Success</tt></dd></dl>
 
 <dl><dt>async <a name="AdminCommandExecutor-load_extension"><strong>load_extension</strong></a>(self, name: str) -&gt; bool</dt><dd><tt>Loads&nbsp;a&nbsp;Python&nbsp;script&nbsp;as&nbsp;an&nbsp;extension&nbsp;from&nbsp;its&nbsp;extension&nbsp;path&nbsp;and&nbsp;call&nbsp;await&nbsp;extension_init(<a href="#AdminCommandExtension">AdminCommandExtension</a>)<br>
+Emits&nbsp;extload_event.<br>
 &nbsp;<br>
 Parameters<br>
 ----------<br>
@@ -483,6 +564,23 @@ Partially&nbsp;copies&nbsp;the&nbsp;Python&nbsp;<a href="#AdminCommandExecutor-p
 Blocks&nbsp;asynchronously&nbsp;until&nbsp;the&nbsp;prompt&nbsp;is&nbsp;closed.<br>
 Prefer&nbsp;launching&nbsp;in&nbsp;asyncio.Task&nbsp;wrapper.</tt></dd></dl>
 
+<dl><dt><a name="AdminCommandExecutor-remove_command"><strong>remove_command</strong></a>(self, name: str)</dt><dd><tt>Permanently&nbsp;removes&nbsp;the&nbsp;command&nbsp;from&nbsp;the&nbsp;chainmap.<br>
+Emits&nbsp;cmdrm_event&nbsp;asynchronously.<br>
+&nbsp;<br>
+Note<br>
+----<br>
+This&nbsp;function&nbsp;will&nbsp;be&nbsp;transformed&nbsp;into&nbsp;an&nbsp;async&nbsp;function&nbsp;in&nbsp;the&nbsp;future&nbsp;versions<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+name&nbsp;:&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;of&nbsp;the&nbsp;command<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+bool<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Success</tt></dd></dl>
+
 <dl><dt><a name="AdminCommandExecutor-save_config"><strong>save_config</strong></a>(self, path: str = 'config.json') -&gt; bool</dt><dd><tt>Saves&nbsp;a&nbsp;configuration&nbsp;into&nbsp;a&nbsp;JSON&nbsp;file<br>
 &nbsp;<br>
 Parameters<br>
@@ -496,6 +594,8 @@ bool<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Success</tt></dd></dl>
 
 <dl><dt>async <a name="AdminCommandExecutor-unload_extension"><strong>unload_extension</strong></a>(self, name: str, keep_dict=False) -&gt; bool</dt><dd><tt>Unload&nbsp;an&nbsp;extension&nbsp;and&nbsp;call&nbsp;await&nbsp;extension_cleanup(<a href="#AdminCommandExtension">AdminCommandExtension</a>)<br>
+Emits&nbsp;extunload_event.<br>
+&nbsp;<br>
 Parameters<br>
 ----------<br>
 name&nbsp;:&nbsp;str<br>
@@ -560,9 +660,14 @@ module&nbsp;:&nbsp;types.ModuleType<br>
 logger&nbsp;:&nbsp;logging.Logger<br>
 &nbsp;&nbsp;&nbsp;&nbsp;logging.Logger&nbsp;instance&nbsp;attached&nbsp;to&nbsp;an&nbsp;extension</tt></dd></dl>
 
-<dl><dt><a name="AdminCommandExtension-add_command"><strong>add_command</strong></a>(self, afunc: Awaitable, name: str, args: Sequence[Tuple[Union[str, int, float, bool, NoneType], str]], optargs: Sequence[Tuple[Union[str, int, float, bool, NoneType], str]] = [], description: str = '', replace=False) -&gt; bool</dt><dd><tt>Registers&nbsp;a&nbsp;command&nbsp;and&nbsp;adds&nbsp;it&nbsp;to&nbsp;the&nbsp;<a href="#AdminCommandExecutor">AdminCommandExecutor</a>.<br>
+<dl><dt><a name="AdminCommandExtension-add_command"><strong>add_command</strong></a>(self, afunc: Callable[[Any], Coroutine[Any, Any, Any]], name: str, args: Sequence[Tuple[Union[str, int, float, bool, NoneType], str]] = (), optargs: Sequence[Tuple[Union[str, int, float, bool, NoneType], str]] = (), description: str = '', replace=False) -&gt; bool</dt><dd><tt>Registers&nbsp;a&nbsp;command&nbsp;and&nbsp;adds&nbsp;it&nbsp;to&nbsp;the&nbsp;<a href="#AdminCommandExecutor">AdminCommandExecutor</a>.<br>
 Constructs&nbsp;an&nbsp;<a href="#AdminCommand">AdminCommand</a>&nbsp;instance&nbsp;with&nbsp;all&nbsp;the&nbsp;arguments&nbsp;passed.<br>
 Doesn't&nbsp;require&nbsp;<a href="#AdminCommandExtension-sync_local_commands">sync_local_commands</a>()&nbsp;to&nbsp;be&nbsp;run<br>
+&nbsp;<br>
+Note<br>
+----<br>
+This&nbsp;function&nbsp;will&nbsp;be&nbsp;transformed&nbsp;into&nbsp;an&nbsp;async&nbsp;function&nbsp;in&nbsp;the&nbsp;future&nbsp;versions<br>
+&nbsp;<br>
 Parameters<br>
 ----------<br>
 see&nbsp;<a href="#AdminCommand">AdminCommand</a><br>
@@ -646,7 +751,7 @@ See&nbsp;ainput.AsyncRawInput&nbsp;for&nbsp;more&nbsp;info<br>&nbsp;</tt></td></
 
 <dl><dt><a name="FakeAsyncRawInput-prompt_keystroke"><strong>prompt_keystroke</strong></a>(self, prompt='', echo=True)</dt><dd><tt>Ask&nbsp;a&nbsp;user&nbsp;to&nbsp;press&nbsp;a&nbsp;key</tt></dd></dl>
 
-<dl><dt><a name="FakeAsyncRawInput-prompt_line"><strong>prompt_line</strong></a>(self, prompt='', echo=True, history_disabled=False, prompt_formats={}, input_formats={})</dt><dd><tt>Ask&nbsp;a&nbsp;user&nbsp;for&nbsp;input</tt></dd></dl>
+<dl><dt><a name="FakeAsyncRawInput-prompt_line"><strong>prompt_line</strong></a>(self, prompt='', echo=True, history_disabled=False, prompt_formats: Optional[MutableMapping] = None, input_formats: Optional[MutableMapping] = None)</dt><dd><tt>Ask&nbsp;a&nbsp;user&nbsp;for&nbsp;input</tt></dd></dl>
 
 <dl><dt><a name="FakeAsyncRawInput-redraw_lastinp"><strong>redraw_lastinp</strong></a>(self, at: int)</dt></dl>
 
@@ -833,7 +938,6 @@ int,&nbsp;int,&nbsp;int<br>
 &nbsp;&nbsp;&nbsp;&nbsp;ID&nbsp;of&nbsp;the&nbsp;last&nbsp;element&nbsp;in&nbsp;the&nbsp;page</tt></dd></dl>
  <dl><dt><a name="-parse_escapes"><strong>parse_escapes</strong></a>(inp: str)</dt><dd><tt>Convert&nbsp;all&nbsp;escape&nbsp;code&nbsp;sequences&nbsp;into&nbsp;actual&nbsp;symbols<br>
 The&nbsp;list&nbsp;of&nbsp;the&nbsp;escape&nbsp;codes&nbsp;is&nbsp;similar&nbsp;to&nbsp;Python&nbsp;string&nbsp;escape&nbsp;sequences</tt></dd></dl>
- <dl><dt><a name="-str_findall_unescaped"><strong>str_findall_unescaped</strong></a>(str_: str, char: int)</dt></dl>
  <dl><dt><a name="-validate_convert_args"><strong>validate_convert_args</strong></a>(argtypes: Tuple[Union[str, int, float, bool, NoneType], str], args: Sequence) -&gt; Union[Sequence[object], int]</dt><dd><tt>Validate&nbsp;and&nbsp;cast&nbsp;string&nbsp;variables&nbsp;into&nbsp;their&nbsp;specified&nbsp;type&nbsp;from&nbsp;argtypes</tt></dd></dl>
 </td></tr></table><p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
@@ -842,15 +946,20 @@ The&nbsp;list&nbsp;of&nbsp;the&nbsp;escape&nbsp;codes&nbsp;is&nbsp;similar&nbsp;
 <font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
     
 <tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
-<td width="100%"><strong>ArgumentType</strong> = typing.Union[str, int, float, bool, NoneType]<br>
+<td width="100%"><strong>Any</strong> = typing.Any<br>
+<strong>ArgumentType</strong> = typing.Union[str, int, float, bool, NoneType]<br>
 <strong>Awaitable</strong> = typing.Awaitable<br>
+<strong>Callable</strong> = typing.Callable<br>
+<strong>Coroutine</strong> = typing.Coroutine<br>
 <strong>Dict</strong> = typing.Dict<br>
 <strong>List</strong> = typing.List<br>
 <strong>Mapping</strong> = typing.Mapping<br>
+<strong>MutableMapping</strong> = typing.MutableMapping<br>
 <strong>Optional</strong> = typing.Optional<br>
 <strong>Sequence</strong> = typing.Sequence<br>
 <strong>Set</strong> = typing.Set<br>
 <strong>Tuple</strong> = typing.Tuple<br>
+<strong>Type</strong> = typing.Type<br>
 <strong>Union</strong> = typing.Union<br>
 <strong>allescapesplitter</strong> = re.compile('(\\\\\\\\|\\\\x[0-9a-fA-F]{2}|\\\\u[0-9a-fA-F]{4}|\\\\[0-7]{1,3}|\\\\[abfnrtv])')<br>
 <strong>argsplitter</strong> = re.compile('(?&lt;!\\\\)".*?(?&lt;!\\\\)"|(?&lt;!\\\\)\'.*?(?&lt;!\\\\)\'|[^ ]+')<br>
