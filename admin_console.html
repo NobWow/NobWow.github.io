@@ -45,9 +45,31 @@ if&nbsp;__name__&nbsp;==&nbsp;"__main__":<br>
 <dt><font face="helvetica, arial"><a href="builtins.html#Exception">builtins.Exception</a>(<a href="builtins.html#BaseException">builtins.BaseException</a>)
 </font></dt><dd>
 <dl>
-<dt><font face="helvetica, arial"><a href="admin_console.html#InvalidArgument">InvalidArgument</a>
-</font></dt><dt><font face="helvetica, arial"><a href="admin_console.html#NotEnoughArguments">NotEnoughArguments</a>
+<dt><font face="helvetica, arial"><a href="admin_console.html#NotEnoughArguments">NotEnoughArguments</a>
 </font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="builtins.html#ValueError">builtins.ValueError</a>(<a href="builtins.html#Exception">builtins.Exception</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="admin_console.html#InvalidArgument">InvalidArgument</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="builtins.html#float">builtins.float</a>(<a href="builtins.html#object">builtins.object</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="admin_console.html#BaseContinuousScale">BaseContinuousScale</a>(<a href="builtins.html#float">builtins.float</a>, <a href="admin_console.html#CustomType">CustomType</a>)
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="builtins.html#int">builtins.int</a>(<a href="builtins.html#object">builtins.object</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="admin_console.html#BaseDiscreteScale">BaseDiscreteScale</a>(<a href="builtins.html#int">builtins.int</a>, <a href="admin_console.html#CustomType">CustomType</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="admin_console.html#EnumType">EnumType</a>
+</font></dt></dl>
+</dd>
+</dl>
 </dd>
 <dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
 </font></dt><dd>
@@ -60,7 +82,20 @@ if&nbsp;__name__&nbsp;==&nbsp;"__main__":<br>
 </font></dt></dl>
 </dd>
 <dt><font face="helvetica, arial"><a href="admin_console.html#AdminCommandExtension">AdminCommandExtension</a>
-</font></dt><dt><font face="helvetica, arial"><a href="admin_console.html#FakeAsyncRawInput">FakeAsyncRawInput</a>
+</font></dt><dt><font face="helvetica, arial"><a href="admin_console.html#CustomType">CustomType</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="admin_console.html#BaseContinuousScale">BaseContinuousScale</a>(<a href="builtins.html#float">builtins.float</a>, <a href="admin_console.html#CustomType">CustomType</a>)
+</font></dt><dt><font face="helvetica, arial"><a href="admin_console.html#BaseDiscreteScale">BaseDiscreteScale</a>(<a href="builtins.html#int">builtins.int</a>, <a href="admin_console.html#CustomType">CustomType</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="admin_console.html#EnumType">EnumType</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="admin_console.html#DurationType">DurationType</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="admin_console.html#FakeAsyncRawInput">FakeAsyncRawInput</a>
 </font></dt></dl>
 </dd>
 </dl>
@@ -71,7 +106,7 @@ if&nbsp;__name__&nbsp;==&nbsp;"__main__":<br>
 <font color="#000000" face="helvetica, arial"><a name="AdminCommand">class <strong>AdminCommand</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
     
 <tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
-<td colspan=2><tt><a href="#AdminCommand">AdminCommand</a>(afunc,&nbsp;name:&nbsp;str,&nbsp;args:&nbsp;Sequence[Tuple[Union[str,&nbsp;int,&nbsp;float,&nbsp;bool,&nbsp;NoneType],&nbsp;str]],&nbsp;optargs:&nbsp;Sequence[Tuple[Union[str,&nbsp;int,&nbsp;float,&nbsp;bool,&nbsp;NoneType],&nbsp;str]],&nbsp;description:&nbsp;str&nbsp;=&nbsp;'',&nbsp;atabcomplete:&nbsp;Optional[Awaitable[Sequence[str]]]&nbsp;=&nbsp;None)<br>
+<td colspan=2><tt><a href="#AdminCommand">AdminCommand</a>(afunc,&nbsp;name:&nbsp;str,&nbsp;args:&nbsp;Sequence[Tuple[Union[str,&nbsp;<a href="builtins.html#int">int</a>,&nbsp;<a href="builtins.html#float">float</a>,&nbsp;bool,&nbsp;NoneType,&nbsp;admin_console.<a href="#CustomType">CustomType</a>],&nbsp;str]],&nbsp;optargs:&nbsp;Sequence[Tuple[Union[str,&nbsp;<a href="builtins.html#int">int</a>,&nbsp;<a href="builtins.html#float">float</a>,&nbsp;bool,&nbsp;NoneType,&nbsp;admin_console.<a href="#CustomType">CustomType</a>],&nbsp;str]],&nbsp;description:&nbsp;str&nbsp;=&nbsp;'',&nbsp;atabcomplete:&nbsp;Optional[Awaitable[Sequence[str]]]&nbsp;=&nbsp;None)<br>
 &nbsp;<br>
 Represents&nbsp;a&nbsp;console&nbsp;command.<br>
 To&nbsp;add&nbsp;a&nbsp;command&nbsp;of&nbsp;an&nbsp;extension,&nbsp;use&nbsp;<a href="#AdminCommandExtension">AdminCommandExtension</a>.add_command(<br>
@@ -79,7 +114,7 @@ To&nbsp;add&nbsp;a&nbsp;command&nbsp;of&nbsp;an&nbsp;extension,&nbsp;use&nbsp;<a
 Emits&nbsp;<a href="#AdminCommandExecutor">AdminCommandExecutor</a>.cmdexec_event,&nbsp;<a href="#AdminCommandExecutor">AdminCommandExecutor</a>.cmdtab_event<br>&nbsp;</tt></td></tr>
 <tr><td>&nbsp;</td>
 <td width="100%">Methods defined here:<br>
-<dl><dt><a name="AdminCommand-__init__"><strong>__init__</strong></a>(self, afunc, name: str, args: Sequence[Tuple[Union[str, int, float, bool, NoneType], str]], optargs: Sequence[Tuple[Union[str, int, float, bool, NoneType], str]], description: str = '', atabcomplete: Optional[Awaitable[Sequence[str]]] = None)</dt><dd><tt>Parameters<br>
+<dl><dt><a name="AdminCommand-__init__"><strong>__init__</strong></a>(self, afunc, name: str, args: Sequence[Tuple[Union[str, int, float, bool, NoneType, admin_console.CustomType], str]], optargs: Sequence[Tuple[Union[str, int, float, bool, NoneType, admin_console.CustomType], str]], description: str = '', atabcomplete: Optional[Awaitable[Sequence[str]]] = None)</dt><dd><tt>Parameters<br>
 ----------<br>
 afunc&nbsp;:&nbsp;coroutine<br>
 &nbsp;&nbsp;&nbsp;&nbsp;await&nbsp;afunc(<a href="#AdminCommandExecutor">AdminCommandExecutor</a>,&nbsp;*args)<br>
@@ -90,11 +125,11 @@ args&nbsp;:&nbsp;list<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[(type&nbsp;:&nbsp;type,&nbsp;name&nbsp;:&nbsp;str),&nbsp;...]<br>
 &nbsp;&nbsp;&nbsp;&nbsp;List&nbsp;of&nbsp;the&nbsp;mandatory&nbsp;arguments&nbsp;of&nbsp;the&nbsp;command<br>
 &nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;Possible&nbsp;types&nbsp;are:&nbsp;str,&nbsp;int,&nbsp;float,&nbsp;bool,&nbsp;None<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Possible&nbsp;types&nbsp;are:&nbsp;str,&nbsp;<a href="builtins.html#int">int</a>,&nbsp;<a href="builtins.html#float">float</a>,&nbsp;bool,&nbsp;None<br>
 &nbsp;&nbsp;&nbsp;&nbsp;-------------------<br>
 &nbsp;&nbsp;&nbsp;&nbsp;str:&nbsp;a&nbsp;word&nbsp;or&nbsp;a&nbsp;"string"<br>
-&nbsp;&nbsp;&nbsp;&nbsp;int:&nbsp;valid&nbsp;number,&nbsp;123<br>
-&nbsp;&nbsp;&nbsp;&nbsp;float:&nbsp;a&nbsp;number&nbsp;with&nbsp;floating&nbsp;point,&nbsp;123.456<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="builtins.html#int">int</a>:&nbsp;valid&nbsp;number,&nbsp;123<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="builtins.html#float">float</a>:&nbsp;a&nbsp;number&nbsp;with&nbsp;floating&nbsp;point,&nbsp;123.456<br>
 &nbsp;&nbsp;&nbsp;&nbsp;bool:&nbsp;switch&nbsp;argument,&nbsp;can&nbsp;be&nbsp;yes&nbsp;/&nbsp;no,&nbsp;true&nbsp;/&nbsp;false,&nbsp;y&nbsp;/&nbsp;n<br>
 &nbsp;&nbsp;&nbsp;&nbsp;None:&nbsp;raw&nbsp;string,&nbsp;such&nbsp;an&nbsp;argument&nbsp;could&nbsp;be&nbsp;only&nbsp;the&nbsp;last&nbsp;argument&nbsp;of&nbsp;the&nbsp;command<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cannot&nbsp;be&nbsp;used&nbsp;with&nbsp;at&nbsp;least&nbsp;1&nbsp;argument&nbsp;from&nbsp;optargs<br>
@@ -112,7 +147,7 @@ atabcomplete&nbsp;:&nbsp;coroutine<br>
 
 <dl><dt>async <a name="AdminCommand-execute"><strong>execute</strong></a>(self, executor, args: Sequence[object])</dt><dd><tt>Shouldn't&nbsp;be&nbsp;overriden,&nbsp;use&nbsp;afunc&nbsp;to&nbsp;assign&nbsp;a&nbsp;functor&nbsp;to&nbsp;the&nbsp;command</tt></dd></dl>
 
-<dl><dt>async <a name="AdminCommand-tab_complete"><strong>tab_complete</strong></a>(self, executor, args: Sequence[object]) -&gt; Optional[tuple]</dt><dd><tt>Shouldn't&nbsp;be&nbsp;overriden,&nbsp;use&nbsp;atabcomplete&nbsp;to&nbsp;assign&nbsp;a&nbsp;tab&nbsp;complete&nbsp;handler</tt></dd></dl>
+<dl><dt>async <a name="AdminCommand-tab_complete"><strong>tab_complete</strong></a>(self, executor, args: Sequence[object], argl: str = '') -&gt; Optional[Sequence[str]]</dt><dd><tt>Shouldn't&nbsp;be&nbsp;overriden,&nbsp;use&nbsp;atabcomplete&nbsp;to&nbsp;assign&nbsp;a&nbsp;tab&nbsp;complete&nbsp;handler</tt></dd></dl>
 
 <hr>
 Data descriptors defined here:<br>
@@ -145,6 +180,8 @@ WARNING:&nbsp;this&nbsp;is&nbsp;NOT&nbsp;a&nbsp;sandbox&nbsp;solution&nbsp;for&n
 </dl>
 <hr>
 Methods defined here:<br>
+<dl><dt><a name="AdminCommandEWrapper-__getattribute__"><strong>__getattribute__</strong></a>(self, name: str, /)</dt><dd><tt>Return&nbsp;getattr(self,&nbsp;name).</tt></dd></dl>
+
 <dl><dt><a name="AdminCommandEWrapper-__init__"><strong>__init__</strong></a>(self, *args, ace: admin_console.AdminCommandExecutor, **kwargs)</dt><dd><tt>Parameters<br>
 ----------<br>
 stuff&nbsp;:&nbsp;dict<br>
@@ -155,6 +192,12 @@ logger&nbsp;:&nbsp;logging.Logger<br>
 &nbsp;&nbsp;&nbsp;&nbsp;logging.Logger&nbsp;instance&nbsp;to&nbsp;handle&nbsp;all&nbsp;the&nbsp;log&nbsp;messages<br>
 extension_path&nbsp;:&nbsp;str<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Relative&nbsp;or&nbsp;absolute&nbsp;path&nbsp;to&nbsp;the&nbsp;extensions&nbsp;directory.&nbsp;Defaults&nbsp;to&nbsp;"extensions/"</tt></dd></dl>
+
+<dl><dt><a name="AdminCommandEWrapper-__setattr__"><strong>__setattr__</strong></a>(self, name: str, value, /)</dt><dd><tt>Implement&nbsp;setattr(self,&nbsp;name,&nbsp;value).</tt></dd></dl>
+
+<dl><dt><a name="AdminCommandEWrapper-override"><strong>override</strong></a>(self, name: str, value)</dt><dd><tt>Change&nbsp;the&nbsp;member&nbsp;of&nbsp;the&nbsp;class,&nbsp;but&nbsp;apply&nbsp;it&nbsp;only&nbsp;for&nbsp;the&nbsp;wrapper,&nbsp;not&nbsp;the&nbsp;real&nbsp;command&nbsp;executor<br>
+For&nbsp;example,&nbsp;replace&nbsp;ainput&nbsp;with&nbsp;something&nbsp;else&nbsp;if&nbsp;the&nbsp;command&nbsp;needs&nbsp;to&nbsp;query&nbsp;input&nbsp;and&nbsp;show&nbsp;messages<br>
+in&nbsp;a&nbsp;different&nbsp;way,&nbsp;rather&nbsp;than&nbsp;doing&nbsp;this&nbsp;in&nbsp;the&nbsp;main&nbsp;console</tt></dd></dl>
 
 <hr>
 Methods inherited from <a href="admin_console.html#AdminCommandExecutor">AdminCommandExecutor</a>:<br>
@@ -237,10 +280,10 @@ Parameters<br>
 ----------<br>
 msg&nbsp;:&nbsp;str<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Message<br>
-level&nbsp;:&nbsp;int<br>
+level&nbsp;:&nbsp;<a href="builtins.html#int">int</a><br>
 &nbsp;&nbsp;&nbsp;&nbsp;Level&nbsp;of&nbsp;the&nbsp;log&nbsp;message&nbsp;between&nbsp;0&nbsp;and&nbsp;50</tt></dd></dl>
 
-<dl><dt><a name="AdminCommandEWrapper-parse_args"><strong>parse_args</strong></a>(self, argl: str, argtypes: Sequence[Tuple[Union[str, int, float, bool, NoneType], str]] = None, opt_argtypes: Sequence[Tuple[Union[str, int, float, bool, NoneType], str]] = None, *, raise_exc=True) -&gt; (&lt;class 'list'&gt;, &lt;class 'str'&gt;)</dt><dd><tt>Smart&nbsp;split&nbsp;the&nbsp;argument&nbsp;line&nbsp;and&nbsp;convert&nbsp;all&nbsp;the&nbsp;arguments&nbsp;to&nbsp;its&nbsp;types<br>
+<dl><dt><a name="AdminCommandEWrapper-parse_args"><strong>parse_args</strong></a>(self, argl: str, argtypes: Sequence[Tuple[Union[str, int, float, bool, NoneType, admin_console.CustomType], str]] = None, opt_argtypes: Sequence[Tuple[Union[str, int, float, bool, NoneType, admin_console.CustomType], str]] = None, *, raise_exc=True, saved_matches: Optional[MutableSequence[re.Match]] = None, until: Optional[int] = None) -&gt; (&lt;class 'list'&gt;, &lt;class 'str'&gt;)</dt><dd><tt>Smart&nbsp;split&nbsp;the&nbsp;argument&nbsp;line&nbsp;and&nbsp;convert&nbsp;all&nbsp;the&nbsp;arguments&nbsp;to&nbsp;its&nbsp;types<br>
 Raises&nbsp;<a href="#InvalidArgument">InvalidArgument</a>(argname)&nbsp;if&nbsp;one&nbsp;of&nbsp;the&nbsp;arguments&nbsp;couldn't&nbsp;be&nbsp;converted<br>
 Raises&nbsp;<a href="#NotEnoughArguments">NotEnoughArguments</a>(len(args))&nbsp;if&nbsp;there&nbsp;isn't&nbsp;enough&nbsp;arguments&nbsp;provided<br>
 &nbsp;<br>
@@ -254,8 +297,18 @@ argtypes&nbsp;:&nbsp;list<br>
 opt_argtypes&nbsp;:&nbsp;list<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Same&nbsp;as&nbsp;argtypes,&nbsp;but&nbsp;those&nbsp;arguments&nbsp;are&nbsp;parsed&nbsp;after&nbsp;mandatory&nbsp;and&nbsp;are&nbsp;optional.<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Doesn't&nbsp;cause&nbsp;<a href="#NotEnoughArguments">NotEnoughArguments</a>&nbsp;to&nbsp;be&nbsp;raise&nbsp;if&nbsp;there&nbsp;is&nbsp;not&nbsp;enough&nbsp;optional&nbsp;arguments<br>
+&nbsp;<br>
+Keyword-only&nbsp;parameters:<br>
 raise_exc&nbsp;:&nbsp;bool<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Whether&nbsp;or&nbsp;not&nbsp;exceptions&nbsp;are&nbsp;raised.&nbsp;If&nbsp;False,&nbsp;data&nbsp;is&nbsp;returned&nbsp;as&nbsp;it&nbsp;is<br>
+saved_matches&nbsp;:&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;specified,&nbsp;the&nbsp;parser&nbsp;will&nbsp;append&nbsp;the&nbsp;re.Match&nbsp;objects&nbsp;for&nbsp;each&nbsp;argument<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;this&nbsp;list&nbsp;except&nbsp;the&nbsp;last&nbsp;NoneType&nbsp;argument&nbsp;(if&nbsp;present&nbsp;in&nbsp;args),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;which&nbsp;does&nbsp;not&nbsp;have&nbsp;any&nbsp;boundaries<br>
+until&nbsp;:&nbsp;<a href="builtins.html#int">int</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;specified,&nbsp;will&nbsp;stop&nbsp;parsing&nbsp;arguments&nbsp;when&nbsp;passed&nbsp;more&nbsp;than&nbsp;n&nbsp;symbols.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Useful&nbsp;when&nbsp;passing&nbsp;sliced&nbsp;string&nbsp;isn't&nbsp;good&nbsp;due&nbsp;to&nbsp;storing&nbsp;argument&nbsp;boundaries<br>
+&nbsp;&nbsp;&nbsp;&nbsp;in&nbsp;saved_matches.<br>
 &nbsp;<br>
 Returns<br>
 -------<br>
@@ -379,8 +432,8 @@ Members<br>
 &nbsp;&nbsp;&nbsp;&nbsp;dictionary&nbsp;of&nbsp;typenames<br>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;str:&nbsp;'word',<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int:&nbsp;'n',<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;float:&nbsp;'n.n',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="builtins.html#int">int</a>:&nbsp;'n',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="builtins.html#float">float</a>:&nbsp;'n.n',<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bool:&nbsp;'yes&nbsp;/&nbsp;no',<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;None:&nbsp;'text...'<br>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br>
@@ -531,10 +584,10 @@ Parameters<br>
 ----------<br>
 msg&nbsp;:&nbsp;str<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Message<br>
-level&nbsp;:&nbsp;int<br>
+level&nbsp;:&nbsp;<a href="builtins.html#int">int</a><br>
 &nbsp;&nbsp;&nbsp;&nbsp;Level&nbsp;of&nbsp;the&nbsp;log&nbsp;message&nbsp;between&nbsp;0&nbsp;and&nbsp;50</tt></dd></dl>
 
-<dl><dt><a name="AdminCommandExecutor-parse_args"><strong>parse_args</strong></a>(self, argl: str, argtypes: Sequence[Tuple[Union[str, int, float, bool, NoneType], str]] = None, opt_argtypes: Sequence[Tuple[Union[str, int, float, bool, NoneType], str]] = None, *, raise_exc=True) -&gt; (&lt;class 'list'&gt;, &lt;class 'str'&gt;)</dt><dd><tt>Smart&nbsp;split&nbsp;the&nbsp;argument&nbsp;line&nbsp;and&nbsp;convert&nbsp;all&nbsp;the&nbsp;arguments&nbsp;to&nbsp;its&nbsp;types<br>
+<dl><dt><a name="AdminCommandExecutor-parse_args"><strong>parse_args</strong></a>(self, argl: str, argtypes: Sequence[Tuple[Union[str, int, float, bool, NoneType, admin_console.CustomType], str]] = None, opt_argtypes: Sequence[Tuple[Union[str, int, float, bool, NoneType, admin_console.CustomType], str]] = None, *, raise_exc=True, saved_matches: Optional[MutableSequence[re.Match]] = None, until: Optional[int] = None) -&gt; (&lt;class 'list'&gt;, &lt;class 'str'&gt;)</dt><dd><tt>Smart&nbsp;split&nbsp;the&nbsp;argument&nbsp;line&nbsp;and&nbsp;convert&nbsp;all&nbsp;the&nbsp;arguments&nbsp;to&nbsp;its&nbsp;types<br>
 Raises&nbsp;<a href="#InvalidArgument">InvalidArgument</a>(argname)&nbsp;if&nbsp;one&nbsp;of&nbsp;the&nbsp;arguments&nbsp;couldn't&nbsp;be&nbsp;converted<br>
 Raises&nbsp;<a href="#NotEnoughArguments">NotEnoughArguments</a>(len(args))&nbsp;if&nbsp;there&nbsp;isn't&nbsp;enough&nbsp;arguments&nbsp;provided<br>
 &nbsp;<br>
@@ -548,8 +601,18 @@ argtypes&nbsp;:&nbsp;list<br>
 opt_argtypes&nbsp;:&nbsp;list<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Same&nbsp;as&nbsp;argtypes,&nbsp;but&nbsp;those&nbsp;arguments&nbsp;are&nbsp;parsed&nbsp;after&nbsp;mandatory&nbsp;and&nbsp;are&nbsp;optional.<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Doesn't&nbsp;cause&nbsp;<a href="#NotEnoughArguments">NotEnoughArguments</a>&nbsp;to&nbsp;be&nbsp;raise&nbsp;if&nbsp;there&nbsp;is&nbsp;not&nbsp;enough&nbsp;optional&nbsp;arguments<br>
+&nbsp;<br>
+Keyword-only&nbsp;parameters:<br>
 raise_exc&nbsp;:&nbsp;bool<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Whether&nbsp;or&nbsp;not&nbsp;exceptions&nbsp;are&nbsp;raised.&nbsp;If&nbsp;False,&nbsp;data&nbsp;is&nbsp;returned&nbsp;as&nbsp;it&nbsp;is<br>
+saved_matches&nbsp;:&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;specified,&nbsp;the&nbsp;parser&nbsp;will&nbsp;append&nbsp;the&nbsp;re.Match&nbsp;objects&nbsp;for&nbsp;each&nbsp;argument<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;this&nbsp;list&nbsp;except&nbsp;the&nbsp;last&nbsp;NoneType&nbsp;argument&nbsp;(if&nbsp;present&nbsp;in&nbsp;args),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;which&nbsp;does&nbsp;not&nbsp;have&nbsp;any&nbsp;boundaries<br>
+until&nbsp;:&nbsp;<a href="builtins.html#int">int</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;specified,&nbsp;will&nbsp;stop&nbsp;parsing&nbsp;arguments&nbsp;when&nbsp;passed&nbsp;more&nbsp;than&nbsp;n&nbsp;symbols.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Useful&nbsp;when&nbsp;passing&nbsp;sliced&nbsp;string&nbsp;isn't&nbsp;good&nbsp;due&nbsp;to&nbsp;storing&nbsp;argument&nbsp;boundaries<br>
+&nbsp;&nbsp;&nbsp;&nbsp;in&nbsp;saved_matches.<br>
 &nbsp;<br>
 Returns<br>
 -------<br>
@@ -660,7 +723,7 @@ module&nbsp;:&nbsp;types.ModuleType<br>
 logger&nbsp;:&nbsp;logging.Logger<br>
 &nbsp;&nbsp;&nbsp;&nbsp;logging.Logger&nbsp;instance&nbsp;attached&nbsp;to&nbsp;an&nbsp;extension</tt></dd></dl>
 
-<dl><dt><a name="AdminCommandExtension-add_command"><strong>add_command</strong></a>(self, afunc: Callable[[Any], Coroutine[Any, Any, Any]], name: str, args: Sequence[Tuple[Union[str, int, float, bool, NoneType], str]] = (), optargs: Sequence[Tuple[Union[str, int, float, bool, NoneType], str]] = (), description: str = '', replace=False) -&gt; bool</dt><dd><tt>Registers&nbsp;a&nbsp;command&nbsp;and&nbsp;adds&nbsp;it&nbsp;to&nbsp;the&nbsp;<a href="#AdminCommandExecutor">AdminCommandExecutor</a>.<br>
+<dl><dt><a name="AdminCommandExtension-add_command"><strong>add_command</strong></a>(self, afunc: Callable[[Any], Coroutine[Any, Any, Any]], name: str, args: Sequence[Tuple[Union[str, int, float, bool, NoneType, admin_console.CustomType], str]] = (), optargs: Sequence[Tuple[Union[str, int, float, bool, NoneType, admin_console.CustomType], str]] = (), description: str = '', replace=False) -&gt; bool</dt><dd><tt>Registers&nbsp;a&nbsp;command&nbsp;and&nbsp;adds&nbsp;it&nbsp;to&nbsp;the&nbsp;<a href="#AdminCommandExecutor">AdminCommandExecutor</a>.<br>
 Constructs&nbsp;an&nbsp;<a href="#AdminCommand">AdminCommand</a>&nbsp;instance&nbsp;with&nbsp;all&nbsp;the&nbsp;arguments&nbsp;passed.<br>
 Doesn't&nbsp;require&nbsp;<a href="#AdminCommandExtension-sync_local_commands">sync_local_commands</a>()&nbsp;to&nbsp;be&nbsp;run<br>
 &nbsp;<br>
@@ -728,6 +791,711 @@ Data descriptors defined here:<br>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
 <tr bgcolor="#ffc8d8">
 <td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="BaseContinuousScale">class <strong>BaseContinuousScale</strong></a>(<a href="builtins.html#float">builtins.float</a>, <a href="admin_console.html#CustomType">CustomType</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#BaseContinuousScale">BaseContinuousScale</a>(value,&nbsp;/,&nbsp;*args,&nbsp;**kwargs)<br>
+&nbsp;<br>
+<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="admin_console.html#BaseContinuousScale">BaseContinuousScale</a></dd>
+<dd><a href="builtins.html#float">builtins.float</a></dd>
+<dd><a href="admin_console.html#CustomType">CustomType</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="BaseContinuousScale-__init__"><strong>__init__</strong></a>(self, value, /, *args, **kwargs)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="BaseContinuousScale-getMax"><strong>getMax</strong></a>(self) -&gt; int</dt><dd><tt>Returns&nbsp;the&nbsp;highest&nbsp;point&nbsp;of&nbsp;a&nbsp;scale</tt></dd></dl>
+
+<dl><dt><a name="BaseContinuousScale-getMin"><strong>getMin</strong></a>(self) -&gt; int</dt><dd><tt>Returns&nbsp;the&nbsp;lowest&nbsp;point&nbsp;of&nbsp;a&nbsp;scale</tt></dd></dl>
+
+<dl><dt><a name="BaseContinuousScale-getValue"><strong>getValue</strong></a>(self) -&gt; int</dt><dd><tt>Obtain&nbsp;a&nbsp;value&nbsp;from&nbsp;this&nbsp;type&nbsp;wrapper</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="builtins.html#float">builtins.float</a>:<br>
+<dl><dt><a name="BaseContinuousScale-__abs__"><strong>__abs__</strong></a>(self, /)</dt><dd><tt>abs(self)</tt></dd></dl>
+
+<dl><dt><a name="BaseContinuousScale-__add__"><strong>__add__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self+value.</tt></dd></dl>
+
+<dl><dt><a name="BaseContinuousScale-__bool__"><strong>__bool__</strong></a>(self, /)</dt><dd><tt>True&nbsp;if&nbsp;self&nbsp;else&nbsp;False</tt></dd></dl>
+
+<dl><dt><a name="BaseContinuousScale-__ceil__"><strong>__ceil__</strong></a>(self, /)</dt><dd><tt>Return&nbsp;the&nbsp;ceiling&nbsp;as&nbsp;an&nbsp;Integral.</tt></dd></dl>
+
+<dl><dt><a name="BaseContinuousScale-__divmod__"><strong>__divmod__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;divmod(self,&nbsp;value).</tt></dd></dl>
+
+<dl><dt><a name="BaseContinuousScale-__eq__"><strong>__eq__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self==value.</tt></dd></dl>
+
+<dl><dt><a name="BaseContinuousScale-__float__"><strong>__float__</strong></a>(self, /)</dt><dd><tt><a href="builtins.html#float">float</a>(self)</tt></dd></dl>
+
+<dl><dt><a name="BaseContinuousScale-__floor__"><strong>__floor__</strong></a>(self, /)</dt><dd><tt>Return&nbsp;the&nbsp;floor&nbsp;as&nbsp;an&nbsp;Integral.</tt></dd></dl>
+
+<dl><dt><a name="BaseContinuousScale-__floordiv__"><strong>__floordiv__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self//value.</tt></dd></dl>
+
+<dl><dt><a name="BaseContinuousScale-__format__"><strong>__format__</strong></a>(self, format_spec, /)</dt><dd><tt>Formats&nbsp;the&nbsp;<a href="builtins.html#float">float</a>&nbsp;according&nbsp;to&nbsp;format_spec.</tt></dd></dl>
+
+<dl><dt><a name="BaseContinuousScale-__ge__"><strong>__ge__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self&gt;=value.</tt></dd></dl>
+
+<dl><dt><a name="BaseContinuousScale-__getattribute__"><strong>__getattribute__</strong></a>(self, name, /)</dt><dd><tt>Return&nbsp;getattr(self,&nbsp;name).</tt></dd></dl>
+
+<dl><dt><a name="BaseContinuousScale-__getnewargs__"><strong>__getnewargs__</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="BaseContinuousScale-__gt__"><strong>__gt__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self&gt;value.</tt></dd></dl>
+
+<dl><dt><a name="BaseContinuousScale-__hash__"><strong>__hash__</strong></a>(self, /)</dt><dd><tt>Return&nbsp;hash(self).</tt></dd></dl>
+
+<dl><dt><a name="BaseContinuousScale-__int__"><strong>__int__</strong></a>(self, /)</dt><dd><tt><a href="builtins.html#int">int</a>(self)</tt></dd></dl>
+
+<dl><dt><a name="BaseContinuousScale-__le__"><strong>__le__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self&lt;=value.</tt></dd></dl>
+
+<dl><dt><a name="BaseContinuousScale-__lt__"><strong>__lt__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self&lt;value.</tt></dd></dl>
+
+<dl><dt><a name="BaseContinuousScale-__mod__"><strong>__mod__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self%value.</tt></dd></dl>
+
+<dl><dt><a name="BaseContinuousScale-__mul__"><strong>__mul__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self*value.</tt></dd></dl>
+
+<dl><dt><a name="BaseContinuousScale-__ne__"><strong>__ne__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self!=value.</tt></dd></dl>
+
+<dl><dt><a name="BaseContinuousScale-__neg__"><strong>__neg__</strong></a>(self, /)</dt><dd><tt>-self</tt></dd></dl>
+
+<dl><dt><a name="BaseContinuousScale-__pos__"><strong>__pos__</strong></a>(self, /)</dt><dd><tt>+self</tt></dd></dl>
+
+<dl><dt><a name="BaseContinuousScale-__pow__"><strong>__pow__</strong></a>(self, value, mod=None, /)</dt><dd><tt>Return&nbsp;pow(self,&nbsp;value,&nbsp;mod).</tt></dd></dl>
+
+<dl><dt><a name="BaseContinuousScale-__radd__"><strong>__radd__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;value+self.</tt></dd></dl>
+
+<dl><dt><a name="BaseContinuousScale-__rdivmod__"><strong>__rdivmod__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;divmod(value,&nbsp;self).</tt></dd></dl>
+
+<dl><dt><a name="BaseContinuousScale-__repr__"><strong>__repr__</strong></a>(self, /)</dt><dd><tt>Return&nbsp;repr(self).</tt></dd></dl>
+
+<dl><dt><a name="BaseContinuousScale-__rfloordiv__"><strong>__rfloordiv__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;value//self.</tt></dd></dl>
+
+<dl><dt><a name="BaseContinuousScale-__rmod__"><strong>__rmod__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;value%self.</tt></dd></dl>
+
+<dl><dt><a name="BaseContinuousScale-__rmul__"><strong>__rmul__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;value*self.</tt></dd></dl>
+
+<dl><dt><a name="BaseContinuousScale-__round__"><strong>__round__</strong></a>(self, ndigits=None, /)</dt><dd><tt>Return&nbsp;the&nbsp;Integral&nbsp;closest&nbsp;to&nbsp;x,&nbsp;rounding&nbsp;half&nbsp;toward&nbsp;even.<br>
+&nbsp;<br>
+When&nbsp;an&nbsp;argument&nbsp;is&nbsp;passed,&nbsp;work&nbsp;like&nbsp;built-in&nbsp;round(x,&nbsp;ndigits).</tt></dd></dl>
+
+<dl><dt><a name="BaseContinuousScale-__rpow__"><strong>__rpow__</strong></a>(self, value, mod=None, /)</dt><dd><tt>Return&nbsp;pow(value,&nbsp;self,&nbsp;mod).</tt></dd></dl>
+
+<dl><dt><a name="BaseContinuousScale-__rsub__"><strong>__rsub__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;value-self.</tt></dd></dl>
+
+<dl><dt><a name="BaseContinuousScale-__rtruediv__"><strong>__rtruediv__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;value/self.</tt></dd></dl>
+
+<dl><dt><a name="BaseContinuousScale-__sub__"><strong>__sub__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self-value.</tt></dd></dl>
+
+<dl><dt><a name="BaseContinuousScale-__truediv__"><strong>__truediv__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self/value.</tt></dd></dl>
+
+<dl><dt><a name="BaseContinuousScale-__trunc__"><strong>__trunc__</strong></a>(self, /)</dt><dd><tt>Return&nbsp;the&nbsp;Integral&nbsp;closest&nbsp;to&nbsp;x&nbsp;between&nbsp;0&nbsp;and&nbsp;x.</tt></dd></dl>
+
+<dl><dt><a name="BaseContinuousScale-as_integer_ratio"><strong>as_integer_ratio</strong></a>(self, /)</dt><dd><tt>Return&nbsp;integer&nbsp;ratio.<br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;pair&nbsp;of&nbsp;integers,&nbsp;whose&nbsp;ratio&nbsp;is&nbsp;exactly&nbsp;equal&nbsp;to&nbsp;the&nbsp;original&nbsp;<a href="builtins.html#float">float</a><br>
+and&nbsp;with&nbsp;a&nbsp;positive&nbsp;denominator.<br>
+&nbsp;<br>
+Raise&nbsp;OverflowError&nbsp;on&nbsp;infinities&nbsp;and&nbsp;a&nbsp;<a href="builtins.html#ValueError">ValueError</a>&nbsp;on&nbsp;NaNs.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;(10.0).<a href="#BaseContinuousScale-as_integer_ratio">as_integer_ratio</a>()<br>
+(10,&nbsp;1)<br>
+&gt;&gt;&gt;&nbsp;(0.0).<a href="#BaseContinuousScale-as_integer_ratio">as_integer_ratio</a>()<br>
+(0,&nbsp;1)<br>
+&gt;&gt;&gt;&nbsp;(-.25).<a href="#BaseContinuousScale-as_integer_ratio">as_integer_ratio</a>()<br>
+(-1,&nbsp;4)</tt></dd></dl>
+
+<dl><dt><a name="BaseContinuousScale-conjugate"><strong>conjugate</strong></a>(self, /)</dt><dd><tt>Return&nbsp;self,&nbsp;the&nbsp;complex&nbsp;conjugate&nbsp;of&nbsp;any&nbsp;<a href="builtins.html#float">float</a>.</tt></dd></dl>
+
+<dl><dt><a name="BaseContinuousScale-hex"><strong>hex</strong></a>(self, /)</dt><dd><tt>Return&nbsp;a&nbsp;hexadecimal&nbsp;representation&nbsp;of&nbsp;a&nbsp;floating-point&nbsp;number.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;(-0.1).<a href="#BaseContinuousScale-hex">hex</a>()<br>
+'-0x1.999999999999ap-4'<br>
+&gt;&gt;&gt;&nbsp;3.14159.<a href="#BaseContinuousScale-hex">hex</a>()<br>
+'0x1.921f9f01b866ep+1'</tt></dd></dl>
+
+<dl><dt><a name="BaseContinuousScale-is_integer"><strong>is_integer</strong></a>(self, /)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;the&nbsp;<a href="builtins.html#float">float</a>&nbsp;is&nbsp;an&nbsp;integer.</tt></dd></dl>
+
+<hr>
+Class methods inherited from <a href="builtins.html#float">builtins.float</a>:<br>
+<dl><dt><a name="BaseContinuousScale-__getformat__"><strong>__getformat__</strong></a>(typestr, /)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>You&nbsp;probably&nbsp;don't&nbsp;want&nbsp;to&nbsp;use&nbsp;this&nbsp;function.<br>
+&nbsp;<br>
+&nbsp;&nbsp;typestr<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Must&nbsp;be&nbsp;'double'&nbsp;or&nbsp;'<a href="builtins.html#float">float</a>'.<br>
+&nbsp;<br>
+It&nbsp;exists&nbsp;mainly&nbsp;to&nbsp;be&nbsp;used&nbsp;in&nbsp;Python's&nbsp;test&nbsp;suite.<br>
+&nbsp;<br>
+This&nbsp;function&nbsp;returns&nbsp;whichever&nbsp;of&nbsp;'unknown',&nbsp;'IEEE,&nbsp;big-endian'&nbsp;or&nbsp;'IEEE,<br>
+little-endian'&nbsp;best&nbsp;describes&nbsp;the&nbsp;format&nbsp;of&nbsp;floating&nbsp;point&nbsp;numbers&nbsp;used&nbsp;by&nbsp;the<br>
+C&nbsp;type&nbsp;named&nbsp;by&nbsp;typestr.</tt></dd></dl>
+
+<dl><dt><a name="BaseContinuousScale-__setformat__"><strong>__setformat__</strong></a>(typestr, fmt, /)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>You&nbsp;probably&nbsp;don't&nbsp;want&nbsp;to&nbsp;use&nbsp;this&nbsp;function.<br>
+&nbsp;<br>
+&nbsp;&nbsp;typestr<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Must&nbsp;be&nbsp;'double'&nbsp;or&nbsp;'<a href="builtins.html#float">float</a>'.<br>
+&nbsp;&nbsp;fmt<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Must&nbsp;be&nbsp;one&nbsp;of&nbsp;'unknown',&nbsp;'IEEE,&nbsp;big-endian'&nbsp;or&nbsp;'IEEE,&nbsp;little-endian',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;and&nbsp;in&nbsp;addition&nbsp;can&nbsp;only&nbsp;be&nbsp;one&nbsp;of&nbsp;the&nbsp;latter&nbsp;two&nbsp;if&nbsp;it&nbsp;appears&nbsp;to<br>
+&nbsp;&nbsp;&nbsp;&nbsp;match&nbsp;the&nbsp;underlying&nbsp;C&nbsp;reality.<br>
+&nbsp;<br>
+It&nbsp;exists&nbsp;mainly&nbsp;to&nbsp;be&nbsp;used&nbsp;in&nbsp;Python's&nbsp;test&nbsp;suite.<br>
+&nbsp;<br>
+Override&nbsp;the&nbsp;automatic&nbsp;determination&nbsp;of&nbsp;C-level&nbsp;floating&nbsp;point&nbsp;type.<br>
+This&nbsp;affects&nbsp;how&nbsp;floats&nbsp;are&nbsp;converted&nbsp;to&nbsp;and&nbsp;from&nbsp;binary&nbsp;strings.</tt></dd></dl>
+
+<dl><dt><a name="BaseContinuousScale-fromhex"><strong>fromhex</strong></a>(string, /)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>Create&nbsp;a&nbsp;floating-point&nbsp;number&nbsp;from&nbsp;a&nbsp;hexadecimal&nbsp;string.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;<a href="builtins.html#float">float</a>.<a href="#BaseContinuousScale-fromhex">fromhex</a>('0x1.ffffp10')<br>
+2047.984375<br>
+&gt;&gt;&gt;&nbsp;<a href="builtins.html#float">float</a>.<a href="#BaseContinuousScale-fromhex">fromhex</a>('-0x1p-1074')<br>
+-5e-324</tt></dd></dl>
+
+<hr>
+Static methods inherited from <a href="builtins.html#float">builtins.float</a>:<br>
+<dl><dt><a name="BaseContinuousScale-__new__"><strong>__new__</strong></a>(*args, **kwargs)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>Create&nbsp;and&nbsp;return&nbsp;a&nbsp;new&nbsp;<a href="builtins.html#object">object</a>.&nbsp;&nbsp;See&nbsp;help(type)&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="builtins.html#float">builtins.float</a>:<br>
+<dl><dt><strong>imag</strong></dt>
+<dd><tt>the&nbsp;imaginary&nbsp;part&nbsp;of&nbsp;a&nbsp;complex&nbsp;number</tt></dd>
+</dl>
+<dl><dt><strong>real</strong></dt>
+<dd><tt>the&nbsp;real&nbsp;part&nbsp;of&nbsp;a&nbsp;complex&nbsp;number</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="admin_console.html#CustomType">CustomType</a>:<br>
+<dl><dt><a name="BaseContinuousScale-tabComplete"><strong>tabComplete</strong></a>(self, value: str)</dt><dd><tt>Return&nbsp;a&nbsp;tuple&nbsp;containing&nbsp;all&nbsp;available&nbsp;items&nbsp;from&nbsp;a&nbsp;starting&nbsp;value</tt></dd></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="BaseDiscreteScale">class <strong>BaseDiscreteScale</strong></a>(<a href="builtins.html#int">builtins.int</a>, <a href="admin_console.html#CustomType">CustomType</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#BaseDiscreteScale">BaseDiscreteScale</a>(value,&nbsp;/,&nbsp;*args,&nbsp;**kwargs)<br>
+&nbsp;<br>
+Base&nbsp;class&nbsp;for&nbsp;defining&nbsp;discrete&nbsp;scale&nbsp;types.&nbsp;An&nbsp;inheritor&nbsp;must&nbsp;either&nbsp;implement&nbsp;getMin,&nbsp;getMax,&nbsp;getStep&nbsp;methods&nbsp;or<br>
+set&nbsp;self.<strong>_min</strong>,&nbsp;self.<strong>_max</strong>&nbsp;and&nbsp;self.<strong>_step</strong>&nbsp;variables&nbsp;accordingly.<br>
+Default&nbsp;value&nbsp;for&nbsp;_step&nbsp;is&nbsp;1<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="admin_console.html#BaseDiscreteScale">BaseDiscreteScale</a></dd>
+<dd><a href="builtins.html#int">builtins.int</a></dd>
+<dd><a href="admin_console.html#CustomType">CustomType</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="BaseDiscreteScale-__init__"><strong>__init__</strong></a>(self, value, /, *args, **kwargs)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-getMax"><strong>getMax</strong></a>(self) -&gt; int</dt><dd><tt>Returns&nbsp;the&nbsp;highest&nbsp;point&nbsp;of&nbsp;a&nbsp;scale</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-getMin"><strong>getMin</strong></a>(self) -&gt; int</dt><dd><tt>Returns&nbsp;the&nbsp;lowest&nbsp;point&nbsp;of&nbsp;a&nbsp;scale</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-getStep"><strong>getStep</strong></a>(self) -&gt; int</dt><dd><tt>Returns&nbsp;the&nbsp;distance&nbsp;between&nbsp;each&nbsp;elements</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-getValue"><strong>getValue</strong></a>(self) -&gt; int</dt><dd><tt>Obtain&nbsp;a&nbsp;value&nbsp;from&nbsp;this&nbsp;type&nbsp;wrapper</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="builtins.html#int">builtins.int</a>:<br>
+<dl><dt><a name="BaseDiscreteScale-__abs__"><strong>__abs__</strong></a>(self, /)</dt><dd><tt>abs(self)</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-__add__"><strong>__add__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self+value.</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-__and__"><strong>__and__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self&amp;value.</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-__bool__"><strong>__bool__</strong></a>(self, /)</dt><dd><tt>True&nbsp;if&nbsp;self&nbsp;else&nbsp;False</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-__ceil__"><strong>__ceil__</strong></a>(...)</dt><dd><tt>Ceiling&nbsp;of&nbsp;an&nbsp;Integral&nbsp;returns&nbsp;itself.</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-__divmod__"><strong>__divmod__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;divmod(self,&nbsp;value).</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-__eq__"><strong>__eq__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self==value.</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-__float__"><strong>__float__</strong></a>(self, /)</dt><dd><tt><a href="builtins.html#float">float</a>(self)</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-__floor__"><strong>__floor__</strong></a>(...)</dt><dd><tt>Flooring&nbsp;an&nbsp;Integral&nbsp;returns&nbsp;itself.</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-__floordiv__"><strong>__floordiv__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self//value.</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-__format__"><strong>__format__</strong></a>(self, format_spec, /)</dt><dd><tt>Default&nbsp;<a href="builtins.html#object">object</a>&nbsp;formatter.</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-__ge__"><strong>__ge__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self&gt;=value.</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-__getattribute__"><strong>__getattribute__</strong></a>(self, name, /)</dt><dd><tt>Return&nbsp;getattr(self,&nbsp;name).</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-__getnewargs__"><strong>__getnewargs__</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="BaseDiscreteScale-__gt__"><strong>__gt__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self&gt;value.</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-__hash__"><strong>__hash__</strong></a>(self, /)</dt><dd><tt>Return&nbsp;hash(self).</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-__index__"><strong>__index__</strong></a>(self, /)</dt><dd><tt>Return&nbsp;self&nbsp;converted&nbsp;to&nbsp;an&nbsp;integer,&nbsp;if&nbsp;self&nbsp;is&nbsp;suitable&nbsp;for&nbsp;use&nbsp;as&nbsp;an&nbsp;index&nbsp;into&nbsp;a&nbsp;list.</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-__int__"><strong>__int__</strong></a>(self, /)</dt><dd><tt><a href="builtins.html#int">int</a>(self)</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-__invert__"><strong>__invert__</strong></a>(self, /)</dt><dd><tt>~self</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-__le__"><strong>__le__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self&lt;=value.</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-__lshift__"><strong>__lshift__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self&lt;&lt;value.</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-__lt__"><strong>__lt__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self&lt;value.</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-__mod__"><strong>__mod__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self%value.</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-__mul__"><strong>__mul__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self*value.</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-__ne__"><strong>__ne__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self!=value.</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-__neg__"><strong>__neg__</strong></a>(self, /)</dt><dd><tt>-self</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-__or__"><strong>__or__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self|value.</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-__pos__"><strong>__pos__</strong></a>(self, /)</dt><dd><tt>+self</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-__pow__"><strong>__pow__</strong></a>(self, value, mod=None, /)</dt><dd><tt>Return&nbsp;pow(self,&nbsp;value,&nbsp;mod).</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-__radd__"><strong>__radd__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;value+self.</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-__rand__"><strong>__rand__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;value&amp;self.</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-__rdivmod__"><strong>__rdivmod__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;divmod(value,&nbsp;self).</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-__repr__"><strong>__repr__</strong></a>(self, /)</dt><dd><tt>Return&nbsp;repr(self).</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-__rfloordiv__"><strong>__rfloordiv__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;value//self.</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-__rlshift__"><strong>__rlshift__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;value&lt;&lt;self.</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-__rmod__"><strong>__rmod__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;value%self.</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-__rmul__"><strong>__rmul__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;value*self.</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-__ror__"><strong>__ror__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;value|self.</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-__round__"><strong>__round__</strong></a>(...)</dt><dd><tt>Rounding&nbsp;an&nbsp;Integral&nbsp;returns&nbsp;itself.<br>
+&nbsp;<br>
+Rounding&nbsp;with&nbsp;an&nbsp;ndigits&nbsp;argument&nbsp;also&nbsp;returns&nbsp;an&nbsp;integer.</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-__rpow__"><strong>__rpow__</strong></a>(self, value, mod=None, /)</dt><dd><tt>Return&nbsp;pow(value,&nbsp;self,&nbsp;mod).</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-__rrshift__"><strong>__rrshift__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;value&gt;&gt;self.</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-__rshift__"><strong>__rshift__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self&gt;&gt;value.</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-__rsub__"><strong>__rsub__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;value-self.</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-__rtruediv__"><strong>__rtruediv__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;value/self.</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-__rxor__"><strong>__rxor__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;value^self.</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-__sizeof__"><strong>__sizeof__</strong></a>(self, /)</dt><dd><tt>Returns&nbsp;size&nbsp;in&nbsp;memory,&nbsp;in&nbsp;bytes.</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-__sub__"><strong>__sub__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self-value.</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-__truediv__"><strong>__truediv__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self/value.</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-__trunc__"><strong>__trunc__</strong></a>(...)</dt><dd><tt>Truncating&nbsp;an&nbsp;Integral&nbsp;returns&nbsp;itself.</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-__xor__"><strong>__xor__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self^value.</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-as_integer_ratio"><strong>as_integer_ratio</strong></a>(self, /)</dt><dd><tt>Return&nbsp;integer&nbsp;ratio.<br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;pair&nbsp;of&nbsp;integers,&nbsp;whose&nbsp;ratio&nbsp;is&nbsp;exactly&nbsp;equal&nbsp;to&nbsp;the&nbsp;original&nbsp;<a href="builtins.html#int">int</a><br>
+and&nbsp;with&nbsp;a&nbsp;positive&nbsp;denominator.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;(10).<a href="#BaseDiscreteScale-as_integer_ratio">as_integer_ratio</a>()<br>
+(10,&nbsp;1)<br>
+&gt;&gt;&gt;&nbsp;(-10).<a href="#BaseDiscreteScale-as_integer_ratio">as_integer_ratio</a>()<br>
+(-10,&nbsp;1)<br>
+&gt;&gt;&gt;&nbsp;(0).<a href="#BaseDiscreteScale-as_integer_ratio">as_integer_ratio</a>()<br>
+(0,&nbsp;1)</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-bit_count"><strong>bit_count</strong></a>(self, /)</dt><dd><tt>Number&nbsp;of&nbsp;ones&nbsp;in&nbsp;the&nbsp;binary&nbsp;representation&nbsp;of&nbsp;the&nbsp;absolute&nbsp;value&nbsp;of&nbsp;self.<br>
+&nbsp;<br>
+Also&nbsp;known&nbsp;as&nbsp;the&nbsp;population&nbsp;count.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;bin(13)<br>
+'0b1101'<br>
+&gt;&gt;&gt;&nbsp;(13).<a href="#BaseDiscreteScale-bit_count">bit_count</a>()<br>
+3</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-bit_length"><strong>bit_length</strong></a>(self, /)</dt><dd><tt>Number&nbsp;of&nbsp;bits&nbsp;necessary&nbsp;to&nbsp;represent&nbsp;self&nbsp;in&nbsp;binary.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;bin(37)<br>
+'0b100101'<br>
+&gt;&gt;&gt;&nbsp;(37).<a href="#BaseDiscreteScale-bit_length">bit_length</a>()<br>
+6</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-conjugate"><strong>conjugate</strong></a>(...)</dt><dd><tt>Returns&nbsp;self,&nbsp;the&nbsp;complex&nbsp;conjugate&nbsp;of&nbsp;any&nbsp;<a href="builtins.html#int">int</a>.</tt></dd></dl>
+
+<dl><dt><a name="BaseDiscreteScale-to_bytes"><strong>to_bytes</strong></a>(self, /, length, byteorder, *, signed=False)</dt><dd><tt>Return&nbsp;an&nbsp;array&nbsp;of&nbsp;bytes&nbsp;representing&nbsp;an&nbsp;integer.<br>
+&nbsp;<br>
+length<br>
+&nbsp;&nbsp;Length&nbsp;of&nbsp;bytes&nbsp;<a href="builtins.html#object">object</a>&nbsp;to&nbsp;use.&nbsp;&nbsp;An&nbsp;OverflowError&nbsp;is&nbsp;raised&nbsp;if&nbsp;the<br>
+&nbsp;&nbsp;integer&nbsp;is&nbsp;not&nbsp;representable&nbsp;with&nbsp;the&nbsp;given&nbsp;number&nbsp;of&nbsp;bytes.<br>
+byteorder<br>
+&nbsp;&nbsp;The&nbsp;byte&nbsp;order&nbsp;used&nbsp;to&nbsp;represent&nbsp;the&nbsp;integer.&nbsp;&nbsp;If&nbsp;byteorder&nbsp;is&nbsp;'big',<br>
+&nbsp;&nbsp;the&nbsp;most&nbsp;significant&nbsp;byte&nbsp;is&nbsp;at&nbsp;the&nbsp;beginning&nbsp;of&nbsp;the&nbsp;byte&nbsp;array.&nbsp;&nbsp;If<br>
+&nbsp;&nbsp;byteorder&nbsp;is&nbsp;'little',&nbsp;the&nbsp;most&nbsp;significant&nbsp;byte&nbsp;is&nbsp;at&nbsp;the&nbsp;end&nbsp;of&nbsp;the<br>
+&nbsp;&nbsp;byte&nbsp;array.&nbsp;&nbsp;To&nbsp;request&nbsp;the&nbsp;native&nbsp;byte&nbsp;order&nbsp;of&nbsp;the&nbsp;host&nbsp;system,&nbsp;use<br>
+&nbsp;&nbsp;`sys.byteorder'&nbsp;as&nbsp;the&nbsp;byte&nbsp;order&nbsp;value.<br>
+signed<br>
+&nbsp;&nbsp;Determines&nbsp;whether&nbsp;two's&nbsp;complement&nbsp;is&nbsp;used&nbsp;to&nbsp;represent&nbsp;the&nbsp;integer.<br>
+&nbsp;&nbsp;If&nbsp;signed&nbsp;is&nbsp;False&nbsp;and&nbsp;a&nbsp;negative&nbsp;integer&nbsp;is&nbsp;given,&nbsp;an&nbsp;OverflowError<br>
+&nbsp;&nbsp;is&nbsp;raised.</tt></dd></dl>
+
+<hr>
+Class methods inherited from <a href="builtins.html#int">builtins.int</a>:<br>
+<dl><dt><a name="BaseDiscreteScale-from_bytes"><strong>from_bytes</strong></a>(bytes, byteorder, *, signed=False)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>Return&nbsp;the&nbsp;integer&nbsp;represented&nbsp;by&nbsp;the&nbsp;given&nbsp;array&nbsp;of&nbsp;bytes.<br>
+&nbsp;<br>
+bytes<br>
+&nbsp;&nbsp;Holds&nbsp;the&nbsp;array&nbsp;of&nbsp;bytes&nbsp;to&nbsp;convert.&nbsp;&nbsp;The&nbsp;argument&nbsp;must&nbsp;either<br>
+&nbsp;&nbsp;support&nbsp;the&nbsp;buffer&nbsp;protocol&nbsp;or&nbsp;be&nbsp;an&nbsp;iterable&nbsp;<a href="builtins.html#object">object</a>&nbsp;producing&nbsp;bytes.<br>
+&nbsp;&nbsp;Bytes&nbsp;and&nbsp;bytearray&nbsp;are&nbsp;examples&nbsp;of&nbsp;built-in&nbsp;objects&nbsp;that&nbsp;support&nbsp;the<br>
+&nbsp;&nbsp;buffer&nbsp;protocol.<br>
+byteorder<br>
+&nbsp;&nbsp;The&nbsp;byte&nbsp;order&nbsp;used&nbsp;to&nbsp;represent&nbsp;the&nbsp;integer.&nbsp;&nbsp;If&nbsp;byteorder&nbsp;is&nbsp;'big',<br>
+&nbsp;&nbsp;the&nbsp;most&nbsp;significant&nbsp;byte&nbsp;is&nbsp;at&nbsp;the&nbsp;beginning&nbsp;of&nbsp;the&nbsp;byte&nbsp;array.&nbsp;&nbsp;If<br>
+&nbsp;&nbsp;byteorder&nbsp;is&nbsp;'little',&nbsp;the&nbsp;most&nbsp;significant&nbsp;byte&nbsp;is&nbsp;at&nbsp;the&nbsp;end&nbsp;of&nbsp;the<br>
+&nbsp;&nbsp;byte&nbsp;array.&nbsp;&nbsp;To&nbsp;request&nbsp;the&nbsp;native&nbsp;byte&nbsp;order&nbsp;of&nbsp;the&nbsp;host&nbsp;system,&nbsp;use<br>
+&nbsp;&nbsp;`sys.byteorder'&nbsp;as&nbsp;the&nbsp;byte&nbsp;order&nbsp;value.<br>
+signed<br>
+&nbsp;&nbsp;Indicates&nbsp;whether&nbsp;two's&nbsp;complement&nbsp;is&nbsp;used&nbsp;to&nbsp;represent&nbsp;the&nbsp;integer.</tt></dd></dl>
+
+<hr>
+Static methods inherited from <a href="builtins.html#int">builtins.int</a>:<br>
+<dl><dt><a name="BaseDiscreteScale-__new__"><strong>__new__</strong></a>(*args, **kwargs)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>Create&nbsp;and&nbsp;return&nbsp;a&nbsp;new&nbsp;<a href="builtins.html#object">object</a>.&nbsp;&nbsp;See&nbsp;help(type)&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="builtins.html#int">builtins.int</a>:<br>
+<dl><dt><strong>denominator</strong></dt>
+<dd><tt>the&nbsp;denominator&nbsp;of&nbsp;a&nbsp;rational&nbsp;number&nbsp;in&nbsp;lowest&nbsp;terms</tt></dd>
+</dl>
+<dl><dt><strong>imag</strong></dt>
+<dd><tt>the&nbsp;imaginary&nbsp;part&nbsp;of&nbsp;a&nbsp;complex&nbsp;number</tt></dd>
+</dl>
+<dl><dt><strong>numerator</strong></dt>
+<dd><tt>the&nbsp;numerator&nbsp;of&nbsp;a&nbsp;rational&nbsp;number&nbsp;in&nbsp;lowest&nbsp;terms</tt></dd>
+</dl>
+<dl><dt><strong>real</strong></dt>
+<dd><tt>the&nbsp;real&nbsp;part&nbsp;of&nbsp;a&nbsp;complex&nbsp;number</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="admin_console.html#CustomType">CustomType</a>:<br>
+<dl><dt><a name="BaseDiscreteScale-tabComplete"><strong>tabComplete</strong></a>(self, value: str)</dt><dd><tt>Return&nbsp;a&nbsp;tuple&nbsp;containing&nbsp;all&nbsp;available&nbsp;items&nbsp;from&nbsp;a&nbsp;starting&nbsp;value</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="admin_console.html#CustomType">CustomType</a>:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CustomType">class <strong>CustomType</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Base&nbsp;class&nbsp;inherited&nbsp;by&nbsp;all&nbsp;custom&nbsp;types&nbsp;for&nbsp;commands.&nbsp;Has&nbsp;only&nbsp;one&nbsp;predefined&nbsp;method&nbsp;that&nbsp;all&nbsp;derivative&nbsp;types&nbsp;must&nbsp;have:&nbsp;<a href="#CustomType-getValue">getValue</a>()<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="CustomType-getValue"><strong>getValue</strong></a>(self)</dt><dd><tt>Obtain&nbsp;a&nbsp;value&nbsp;from&nbsp;this&nbsp;type&nbsp;wrapper</tt></dd></dl>
+
+<dl><dt><a name="CustomType-tabComplete"><strong>tabComplete</strong></a>(self, value: str)</dt><dd><tt>Return&nbsp;a&nbsp;tuple&nbsp;containing&nbsp;all&nbsp;available&nbsp;items&nbsp;from&nbsp;a&nbsp;starting&nbsp;value</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="DurationType">class <strong>DurationType</strong></a>(<a href="admin_console.html#CustomType">CustomType</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#DurationType">DurationType</a>(value:&nbsp;str&nbsp;=&nbsp;'',&nbsp;*,&nbsp;from_timedelta:&nbsp;datetime.timedelta&nbsp;=&nbsp;None)<br>
+&nbsp;<br>
+<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="admin_console.html#DurationType">DurationType</a></dd>
+<dd><a href="admin_console.html#CustomType">CustomType</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="DurationType-__init__"><strong>__init__</strong></a>(self, value: str = '', *, from_timedelta: datetime.timedelta = None)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="admin_console.html#CustomType">CustomType</a>:<br>
+<dl><dt><a name="DurationType-getValue"><strong>getValue</strong></a>(self)</dt><dd><tt>Obtain&nbsp;a&nbsp;value&nbsp;from&nbsp;this&nbsp;type&nbsp;wrapper</tt></dd></dl>
+
+<dl><dt><a name="DurationType-tabComplete"><strong>tabComplete</strong></a>(self, value: str)</dt><dd><tt>Return&nbsp;a&nbsp;tuple&nbsp;containing&nbsp;all&nbsp;available&nbsp;items&nbsp;from&nbsp;a&nbsp;starting&nbsp;value</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="admin_console.html#CustomType">CustomType</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="EnumType">class <strong>EnumType</strong></a>(<a href="admin_console.html#BaseDiscreteScale">BaseDiscreteScale</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#EnumType">EnumType</a>(value,&nbsp;/,&nbsp;*args,&nbsp;**kwargs)<br>
+&nbsp;<br>
+Base&nbsp;class&nbsp;for&nbsp;defining&nbsp;a&nbsp;discrete&nbsp;scale&nbsp;of&nbsp;certain&nbsp;objects&nbsp;(e.g.&nbsp;words,&nbsp;literal&nbsp;phrases)<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="admin_console.html#EnumType">EnumType</a></dd>
+<dd><a href="admin_console.html#BaseDiscreteScale">BaseDiscreteScale</a></dd>
+<dd><a href="builtins.html#int">builtins.int</a></dd>
+<dd><a href="admin_console.html#CustomType">CustomType</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="admin_console.html#BaseDiscreteScale">BaseDiscreteScale</a>:<br>
+<dl><dt><a name="EnumType-__init__"><strong>__init__</strong></a>(self, value, /, *args, **kwargs)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="EnumType-getMax"><strong>getMax</strong></a>(self) -&gt; int</dt><dd><tt>Returns&nbsp;the&nbsp;highest&nbsp;point&nbsp;of&nbsp;a&nbsp;scale</tt></dd></dl>
+
+<dl><dt><a name="EnumType-getMin"><strong>getMin</strong></a>(self) -&gt; int</dt><dd><tt>Returns&nbsp;the&nbsp;lowest&nbsp;point&nbsp;of&nbsp;a&nbsp;scale</tt></dd></dl>
+
+<dl><dt><a name="EnumType-getStep"><strong>getStep</strong></a>(self) -&gt; int</dt><dd><tt>Returns&nbsp;the&nbsp;distance&nbsp;between&nbsp;each&nbsp;elements</tt></dd></dl>
+
+<dl><dt><a name="EnumType-getValue"><strong>getValue</strong></a>(self) -&gt; int</dt><dd><tt>Obtain&nbsp;a&nbsp;value&nbsp;from&nbsp;this&nbsp;type&nbsp;wrapper</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="admin_console.html#BaseDiscreteScale">BaseDiscreteScale</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="builtins.html#int">builtins.int</a>:<br>
+<dl><dt><a name="EnumType-__abs__"><strong>__abs__</strong></a>(self, /)</dt><dd><tt>abs(self)</tt></dd></dl>
+
+<dl><dt><a name="EnumType-__add__"><strong>__add__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self+value.</tt></dd></dl>
+
+<dl><dt><a name="EnumType-__and__"><strong>__and__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self&amp;value.</tt></dd></dl>
+
+<dl><dt><a name="EnumType-__bool__"><strong>__bool__</strong></a>(self, /)</dt><dd><tt>True&nbsp;if&nbsp;self&nbsp;else&nbsp;False</tt></dd></dl>
+
+<dl><dt><a name="EnumType-__ceil__"><strong>__ceil__</strong></a>(...)</dt><dd><tt>Ceiling&nbsp;of&nbsp;an&nbsp;Integral&nbsp;returns&nbsp;itself.</tt></dd></dl>
+
+<dl><dt><a name="EnumType-__divmod__"><strong>__divmod__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;divmod(self,&nbsp;value).</tt></dd></dl>
+
+<dl><dt><a name="EnumType-__eq__"><strong>__eq__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self==value.</tt></dd></dl>
+
+<dl><dt><a name="EnumType-__float__"><strong>__float__</strong></a>(self, /)</dt><dd><tt><a href="builtins.html#float">float</a>(self)</tt></dd></dl>
+
+<dl><dt><a name="EnumType-__floor__"><strong>__floor__</strong></a>(...)</dt><dd><tt>Flooring&nbsp;an&nbsp;Integral&nbsp;returns&nbsp;itself.</tt></dd></dl>
+
+<dl><dt><a name="EnumType-__floordiv__"><strong>__floordiv__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self//value.</tt></dd></dl>
+
+<dl><dt><a name="EnumType-__format__"><strong>__format__</strong></a>(self, format_spec, /)</dt><dd><tt>Default&nbsp;<a href="builtins.html#object">object</a>&nbsp;formatter.</tt></dd></dl>
+
+<dl><dt><a name="EnumType-__ge__"><strong>__ge__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self&gt;=value.</tt></dd></dl>
+
+<dl><dt><a name="EnumType-__getattribute__"><strong>__getattribute__</strong></a>(self, name, /)</dt><dd><tt>Return&nbsp;getattr(self,&nbsp;name).</tt></dd></dl>
+
+<dl><dt><a name="EnumType-__getnewargs__"><strong>__getnewargs__</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="EnumType-__gt__"><strong>__gt__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self&gt;value.</tt></dd></dl>
+
+<dl><dt><a name="EnumType-__hash__"><strong>__hash__</strong></a>(self, /)</dt><dd><tt>Return&nbsp;hash(self).</tt></dd></dl>
+
+<dl><dt><a name="EnumType-__index__"><strong>__index__</strong></a>(self, /)</dt><dd><tt>Return&nbsp;self&nbsp;converted&nbsp;to&nbsp;an&nbsp;integer,&nbsp;if&nbsp;self&nbsp;is&nbsp;suitable&nbsp;for&nbsp;use&nbsp;as&nbsp;an&nbsp;index&nbsp;into&nbsp;a&nbsp;list.</tt></dd></dl>
+
+<dl><dt><a name="EnumType-__int__"><strong>__int__</strong></a>(self, /)</dt><dd><tt><a href="builtins.html#int">int</a>(self)</tt></dd></dl>
+
+<dl><dt><a name="EnumType-__invert__"><strong>__invert__</strong></a>(self, /)</dt><dd><tt>~self</tt></dd></dl>
+
+<dl><dt><a name="EnumType-__le__"><strong>__le__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self&lt;=value.</tt></dd></dl>
+
+<dl><dt><a name="EnumType-__lshift__"><strong>__lshift__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self&lt;&lt;value.</tt></dd></dl>
+
+<dl><dt><a name="EnumType-__lt__"><strong>__lt__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self&lt;value.</tt></dd></dl>
+
+<dl><dt><a name="EnumType-__mod__"><strong>__mod__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self%value.</tt></dd></dl>
+
+<dl><dt><a name="EnumType-__mul__"><strong>__mul__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self*value.</tt></dd></dl>
+
+<dl><dt><a name="EnumType-__ne__"><strong>__ne__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self!=value.</tt></dd></dl>
+
+<dl><dt><a name="EnumType-__neg__"><strong>__neg__</strong></a>(self, /)</dt><dd><tt>-self</tt></dd></dl>
+
+<dl><dt><a name="EnumType-__or__"><strong>__or__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self|value.</tt></dd></dl>
+
+<dl><dt><a name="EnumType-__pos__"><strong>__pos__</strong></a>(self, /)</dt><dd><tt>+self</tt></dd></dl>
+
+<dl><dt><a name="EnumType-__pow__"><strong>__pow__</strong></a>(self, value, mod=None, /)</dt><dd><tt>Return&nbsp;pow(self,&nbsp;value,&nbsp;mod).</tt></dd></dl>
+
+<dl><dt><a name="EnumType-__radd__"><strong>__radd__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;value+self.</tt></dd></dl>
+
+<dl><dt><a name="EnumType-__rand__"><strong>__rand__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;value&amp;self.</tt></dd></dl>
+
+<dl><dt><a name="EnumType-__rdivmod__"><strong>__rdivmod__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;divmod(value,&nbsp;self).</tt></dd></dl>
+
+<dl><dt><a name="EnumType-__repr__"><strong>__repr__</strong></a>(self, /)</dt><dd><tt>Return&nbsp;repr(self).</tt></dd></dl>
+
+<dl><dt><a name="EnumType-__rfloordiv__"><strong>__rfloordiv__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;value//self.</tt></dd></dl>
+
+<dl><dt><a name="EnumType-__rlshift__"><strong>__rlshift__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;value&lt;&lt;self.</tt></dd></dl>
+
+<dl><dt><a name="EnumType-__rmod__"><strong>__rmod__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;value%self.</tt></dd></dl>
+
+<dl><dt><a name="EnumType-__rmul__"><strong>__rmul__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;value*self.</tt></dd></dl>
+
+<dl><dt><a name="EnumType-__ror__"><strong>__ror__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;value|self.</tt></dd></dl>
+
+<dl><dt><a name="EnumType-__round__"><strong>__round__</strong></a>(...)</dt><dd><tt>Rounding&nbsp;an&nbsp;Integral&nbsp;returns&nbsp;itself.<br>
+&nbsp;<br>
+Rounding&nbsp;with&nbsp;an&nbsp;ndigits&nbsp;argument&nbsp;also&nbsp;returns&nbsp;an&nbsp;integer.</tt></dd></dl>
+
+<dl><dt><a name="EnumType-__rpow__"><strong>__rpow__</strong></a>(self, value, mod=None, /)</dt><dd><tt>Return&nbsp;pow(value,&nbsp;self,&nbsp;mod).</tt></dd></dl>
+
+<dl><dt><a name="EnumType-__rrshift__"><strong>__rrshift__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;value&gt;&gt;self.</tt></dd></dl>
+
+<dl><dt><a name="EnumType-__rshift__"><strong>__rshift__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self&gt;&gt;value.</tt></dd></dl>
+
+<dl><dt><a name="EnumType-__rsub__"><strong>__rsub__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;value-self.</tt></dd></dl>
+
+<dl><dt><a name="EnumType-__rtruediv__"><strong>__rtruediv__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;value/self.</tt></dd></dl>
+
+<dl><dt><a name="EnumType-__rxor__"><strong>__rxor__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;value^self.</tt></dd></dl>
+
+<dl><dt><a name="EnumType-__sizeof__"><strong>__sizeof__</strong></a>(self, /)</dt><dd><tt>Returns&nbsp;size&nbsp;in&nbsp;memory,&nbsp;in&nbsp;bytes.</tt></dd></dl>
+
+<dl><dt><a name="EnumType-__sub__"><strong>__sub__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self-value.</tt></dd></dl>
+
+<dl><dt><a name="EnumType-__truediv__"><strong>__truediv__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self/value.</tt></dd></dl>
+
+<dl><dt><a name="EnumType-__trunc__"><strong>__trunc__</strong></a>(...)</dt><dd><tt>Truncating&nbsp;an&nbsp;Integral&nbsp;returns&nbsp;itself.</tt></dd></dl>
+
+<dl><dt><a name="EnumType-__xor__"><strong>__xor__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self^value.</tt></dd></dl>
+
+<dl><dt><a name="EnumType-as_integer_ratio"><strong>as_integer_ratio</strong></a>(self, /)</dt><dd><tt>Return&nbsp;integer&nbsp;ratio.<br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;pair&nbsp;of&nbsp;integers,&nbsp;whose&nbsp;ratio&nbsp;is&nbsp;exactly&nbsp;equal&nbsp;to&nbsp;the&nbsp;original&nbsp;<a href="builtins.html#int">int</a><br>
+and&nbsp;with&nbsp;a&nbsp;positive&nbsp;denominator.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;(10).<a href="#EnumType-as_integer_ratio">as_integer_ratio</a>()<br>
+(10,&nbsp;1)<br>
+&gt;&gt;&gt;&nbsp;(-10).<a href="#EnumType-as_integer_ratio">as_integer_ratio</a>()<br>
+(-10,&nbsp;1)<br>
+&gt;&gt;&gt;&nbsp;(0).<a href="#EnumType-as_integer_ratio">as_integer_ratio</a>()<br>
+(0,&nbsp;1)</tt></dd></dl>
+
+<dl><dt><a name="EnumType-bit_count"><strong>bit_count</strong></a>(self, /)</dt><dd><tt>Number&nbsp;of&nbsp;ones&nbsp;in&nbsp;the&nbsp;binary&nbsp;representation&nbsp;of&nbsp;the&nbsp;absolute&nbsp;value&nbsp;of&nbsp;self.<br>
+&nbsp;<br>
+Also&nbsp;known&nbsp;as&nbsp;the&nbsp;population&nbsp;count.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;bin(13)<br>
+'0b1101'<br>
+&gt;&gt;&gt;&nbsp;(13).<a href="#EnumType-bit_count">bit_count</a>()<br>
+3</tt></dd></dl>
+
+<dl><dt><a name="EnumType-bit_length"><strong>bit_length</strong></a>(self, /)</dt><dd><tt>Number&nbsp;of&nbsp;bits&nbsp;necessary&nbsp;to&nbsp;represent&nbsp;self&nbsp;in&nbsp;binary.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;bin(37)<br>
+'0b100101'<br>
+&gt;&gt;&gt;&nbsp;(37).<a href="#EnumType-bit_length">bit_length</a>()<br>
+6</tt></dd></dl>
+
+<dl><dt><a name="EnumType-conjugate"><strong>conjugate</strong></a>(...)</dt><dd><tt>Returns&nbsp;self,&nbsp;the&nbsp;complex&nbsp;conjugate&nbsp;of&nbsp;any&nbsp;<a href="builtins.html#int">int</a>.</tt></dd></dl>
+
+<dl><dt><a name="EnumType-to_bytes"><strong>to_bytes</strong></a>(self, /, length, byteorder, *, signed=False)</dt><dd><tt>Return&nbsp;an&nbsp;array&nbsp;of&nbsp;bytes&nbsp;representing&nbsp;an&nbsp;integer.<br>
+&nbsp;<br>
+length<br>
+&nbsp;&nbsp;Length&nbsp;of&nbsp;bytes&nbsp;<a href="builtins.html#object">object</a>&nbsp;to&nbsp;use.&nbsp;&nbsp;An&nbsp;OverflowError&nbsp;is&nbsp;raised&nbsp;if&nbsp;the<br>
+&nbsp;&nbsp;integer&nbsp;is&nbsp;not&nbsp;representable&nbsp;with&nbsp;the&nbsp;given&nbsp;number&nbsp;of&nbsp;bytes.<br>
+byteorder<br>
+&nbsp;&nbsp;The&nbsp;byte&nbsp;order&nbsp;used&nbsp;to&nbsp;represent&nbsp;the&nbsp;integer.&nbsp;&nbsp;If&nbsp;byteorder&nbsp;is&nbsp;'big',<br>
+&nbsp;&nbsp;the&nbsp;most&nbsp;significant&nbsp;byte&nbsp;is&nbsp;at&nbsp;the&nbsp;beginning&nbsp;of&nbsp;the&nbsp;byte&nbsp;array.&nbsp;&nbsp;If<br>
+&nbsp;&nbsp;byteorder&nbsp;is&nbsp;'little',&nbsp;the&nbsp;most&nbsp;significant&nbsp;byte&nbsp;is&nbsp;at&nbsp;the&nbsp;end&nbsp;of&nbsp;the<br>
+&nbsp;&nbsp;byte&nbsp;array.&nbsp;&nbsp;To&nbsp;request&nbsp;the&nbsp;native&nbsp;byte&nbsp;order&nbsp;of&nbsp;the&nbsp;host&nbsp;system,&nbsp;use<br>
+&nbsp;&nbsp;`sys.byteorder'&nbsp;as&nbsp;the&nbsp;byte&nbsp;order&nbsp;value.<br>
+signed<br>
+&nbsp;&nbsp;Determines&nbsp;whether&nbsp;two's&nbsp;complement&nbsp;is&nbsp;used&nbsp;to&nbsp;represent&nbsp;the&nbsp;integer.<br>
+&nbsp;&nbsp;If&nbsp;signed&nbsp;is&nbsp;False&nbsp;and&nbsp;a&nbsp;negative&nbsp;integer&nbsp;is&nbsp;given,&nbsp;an&nbsp;OverflowError<br>
+&nbsp;&nbsp;is&nbsp;raised.</tt></dd></dl>
+
+<hr>
+Class methods inherited from <a href="builtins.html#int">builtins.int</a>:<br>
+<dl><dt><a name="EnumType-from_bytes"><strong>from_bytes</strong></a>(bytes, byteorder, *, signed=False)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>Return&nbsp;the&nbsp;integer&nbsp;represented&nbsp;by&nbsp;the&nbsp;given&nbsp;array&nbsp;of&nbsp;bytes.<br>
+&nbsp;<br>
+bytes<br>
+&nbsp;&nbsp;Holds&nbsp;the&nbsp;array&nbsp;of&nbsp;bytes&nbsp;to&nbsp;convert.&nbsp;&nbsp;The&nbsp;argument&nbsp;must&nbsp;either<br>
+&nbsp;&nbsp;support&nbsp;the&nbsp;buffer&nbsp;protocol&nbsp;or&nbsp;be&nbsp;an&nbsp;iterable&nbsp;<a href="builtins.html#object">object</a>&nbsp;producing&nbsp;bytes.<br>
+&nbsp;&nbsp;Bytes&nbsp;and&nbsp;bytearray&nbsp;are&nbsp;examples&nbsp;of&nbsp;built-in&nbsp;objects&nbsp;that&nbsp;support&nbsp;the<br>
+&nbsp;&nbsp;buffer&nbsp;protocol.<br>
+byteorder<br>
+&nbsp;&nbsp;The&nbsp;byte&nbsp;order&nbsp;used&nbsp;to&nbsp;represent&nbsp;the&nbsp;integer.&nbsp;&nbsp;If&nbsp;byteorder&nbsp;is&nbsp;'big',<br>
+&nbsp;&nbsp;the&nbsp;most&nbsp;significant&nbsp;byte&nbsp;is&nbsp;at&nbsp;the&nbsp;beginning&nbsp;of&nbsp;the&nbsp;byte&nbsp;array.&nbsp;&nbsp;If<br>
+&nbsp;&nbsp;byteorder&nbsp;is&nbsp;'little',&nbsp;the&nbsp;most&nbsp;significant&nbsp;byte&nbsp;is&nbsp;at&nbsp;the&nbsp;end&nbsp;of&nbsp;the<br>
+&nbsp;&nbsp;byte&nbsp;array.&nbsp;&nbsp;To&nbsp;request&nbsp;the&nbsp;native&nbsp;byte&nbsp;order&nbsp;of&nbsp;the&nbsp;host&nbsp;system,&nbsp;use<br>
+&nbsp;&nbsp;`sys.byteorder'&nbsp;as&nbsp;the&nbsp;byte&nbsp;order&nbsp;value.<br>
+signed<br>
+&nbsp;&nbsp;Indicates&nbsp;whether&nbsp;two's&nbsp;complement&nbsp;is&nbsp;used&nbsp;to&nbsp;represent&nbsp;the&nbsp;integer.</tt></dd></dl>
+
+<hr>
+Static methods inherited from <a href="builtins.html#int">builtins.int</a>:<br>
+<dl><dt><a name="EnumType-__new__"><strong>__new__</strong></a>(*args, **kwargs)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>Create&nbsp;and&nbsp;return&nbsp;a&nbsp;new&nbsp;<a href="builtins.html#object">object</a>.&nbsp;&nbsp;See&nbsp;help(type)&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="builtins.html#int">builtins.int</a>:<br>
+<dl><dt><strong>denominator</strong></dt>
+<dd><tt>the&nbsp;denominator&nbsp;of&nbsp;a&nbsp;rational&nbsp;number&nbsp;in&nbsp;lowest&nbsp;terms</tt></dd>
+</dl>
+<dl><dt><strong>imag</strong></dt>
+<dd><tt>the&nbsp;imaginary&nbsp;part&nbsp;of&nbsp;a&nbsp;complex&nbsp;number</tt></dd>
+</dl>
+<dl><dt><strong>numerator</strong></dt>
+<dd><tt>the&nbsp;numerator&nbsp;of&nbsp;a&nbsp;rational&nbsp;number&nbsp;in&nbsp;lowest&nbsp;terms</tt></dd>
+</dl>
+<dl><dt><strong>real</strong></dt>
+<dd><tt>the&nbsp;real&nbsp;part&nbsp;of&nbsp;a&nbsp;complex&nbsp;number</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="admin_console.html#CustomType">CustomType</a>:<br>
+<dl><dt><a name="EnumType-tabComplete"><strong>tabComplete</strong></a>(self, value: str)</dt><dd><tt>Return&nbsp;a&nbsp;tuple&nbsp;containing&nbsp;all&nbsp;available&nbsp;items&nbsp;from&nbsp;a&nbsp;starting&nbsp;value</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="admin_console.html#CustomType">CustomType</a>:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
 <font color="#000000" face="helvetica, arial"><a name="FakeAsyncRawInput">class <strong>FakeAsyncRawInput</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
     
 <tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
@@ -775,11 +1543,14 @@ Data descriptors defined here:<br>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
 <tr bgcolor="#ffc8d8">
 <td colspan=3 valign=bottom>&nbsp;<br>
-<font color="#000000" face="helvetica, arial"><a name="InvalidArgument">class <strong>InvalidArgument</strong></a>(<a href="builtins.html#Exception">builtins.Exception</a>)</font></td></tr>
+<font color="#000000" face="helvetica, arial"><a name="InvalidArgument">class <strong>InvalidArgument</strong></a>(<a href="builtins.html#ValueError">builtins.ValueError</a>)</font></td></tr>
     
-<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Raised&nbsp;by&nbsp;<a href="#AdminCommandExecutor">AdminCommandExecutor</a>.parse_args()&nbsp;when&nbsp;one&nbsp;of&nbsp;the&nbsp;arguments&nbsp;cannot&nbsp;be&nbsp;parsed<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
 <td width="100%"><dl><dt>Method resolution order:</dt>
 <dd><a href="admin_console.html#InvalidArgument">InvalidArgument</a></dd>
+<dd><a href="builtins.html#ValueError">builtins.ValueError</a></dd>
 <dd><a href="builtins.html#Exception">builtins.Exception</a></dd>
 <dd><a href="builtins.html#BaseException">builtins.BaseException</a></dd>
 <dd><a href="builtins.html#object">builtins.object</a></dd>
@@ -790,11 +1561,11 @@ Data descriptors defined here:<br>
 <dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
 </dl>
 <hr>
-Methods inherited from <a href="builtins.html#Exception">builtins.Exception</a>:<br>
+Methods inherited from <a href="builtins.html#ValueError">builtins.ValueError</a>:<br>
 <dl><dt><a name="InvalidArgument-__init__"><strong>__init__</strong></a>(self, /, *args, **kwargs)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
 
 <hr>
-Static methods inherited from <a href="builtins.html#Exception">builtins.Exception</a>:<br>
+Static methods inherited from <a href="builtins.html#ValueError">builtins.ValueError</a>:<br>
 <dl><dt><a name="InvalidArgument-__new__"><strong>__new__</strong></a>(*args, **kwargs)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>Create&nbsp;and&nbsp;return&nbsp;a&nbsp;new&nbsp;<a href="builtins.html#object">object</a>.&nbsp;&nbsp;See&nbsp;help(type)&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
 
 <hr>
@@ -838,7 +1609,9 @@ Data descriptors inherited from <a href="builtins.html#BaseException">builtins.B
 <td colspan=3 valign=bottom>&nbsp;<br>
 <font color="#000000" face="helvetica, arial"><a name="NotEnoughArguments">class <strong>NotEnoughArguments</strong></a>(<a href="builtins.html#Exception">builtins.Exception</a>)</font></td></tr>
     
-<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Raised&nbsp;by&nbsp;<a href="#AdminCommandExecutor">AdminCommandExecutor</a>.dispatch()&nbsp;when&nbsp;command&nbsp;string&nbsp;doesn't&nbsp;have&nbsp;enough&nbsp;arguments<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
 <td width="100%"><dl><dt>Method resolution order:</dt>
 <dd><a href="admin_console.html#NotEnoughArguments">NotEnoughArguments</a></dd>
 <dd><a href="builtins.html#Exception">builtins.Exception</a></dd>
@@ -910,35 +1683,35 @@ Parameters<br>
 ----------<br>
 list_&nbsp;:&nbsp;list<br>
 &nbsp;&nbsp;&nbsp;&nbsp;List&nbsp;of&nbsp;the&nbsp;elements<br>
-elemperpage&nbsp;:&nbsp;int<br>
+elemperpage&nbsp;:&nbsp;<a href="builtins.html#int">int</a><br>
 &nbsp;&nbsp;&nbsp;&nbsp;Amount&nbsp;of&nbsp;elements&nbsp;per&nbsp;page<br>
-cpage&nbsp;:&nbsp;int<br>
+cpage&nbsp;:&nbsp;<a href="builtins.html#int">int</a><br>
 &nbsp;&nbsp;&nbsp;&nbsp;Number&nbsp;of&nbsp;selected&nbsp;page<br>
 &nbsp;<br>
 Returns<br>
 -------<br>
-int,&nbsp;list<br>
+<a href="builtins.html#int">int</a>,&nbsp;list<br>
 &nbsp;&nbsp;&nbsp;&nbsp;amount&nbsp;of&nbsp;pages<br>
 &nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;list&nbsp;page</tt></dd></dl>
  <dl><dt><a name="-paginate_range"><strong>paginate_range</strong></a>(count: int, elemperpage: int, cpage: int) -&gt; (&lt;class 'int'&gt;, &lt;class 'int'&gt;, &lt;class 'int'&gt;)</dt><dd><tt>Similar&nbsp;to&nbsp;the&nbsp;<a href="#-paginate_list">paginate_list</a>(list,&nbsp;elemperpage,&nbsp;cpage),&nbsp;but&nbsp;creates&nbsp;a&nbsp;range&nbsp;instead&nbsp;of&nbsp;the&nbsp;list<br>
 Parameters<br>
 ----------<br>
-count&nbsp;:&nbsp;int<br>
+count&nbsp;:&nbsp;<a href="builtins.html#int">int</a><br>
 &nbsp;&nbsp;&nbsp;&nbsp;Amount&nbsp;of&nbsp;all&nbsp;elements<br>
-elemperpage&nbsp;:&nbsp;int<br>
+elemperpage&nbsp;:&nbsp;<a href="builtins.html#int">int</a><br>
 &nbsp;&nbsp;&nbsp;&nbsp;Amount&nbsp;of&nbsp;elements&nbsp;per&nbsp;page<br>
-cpage&nbsp;:&nbsp;int<br>
+cpage&nbsp;:&nbsp;<a href="builtins.html#int">int</a><br>
 &nbsp;&nbsp;&nbsp;&nbsp;Number&nbsp;of&nbsp;selected&nbsp;page<br>
 &nbsp;<br>
 Returns<br>
 -------<br>
-int,&nbsp;int,&nbsp;int<br>
+<a href="builtins.html#int">int</a>,&nbsp;<a href="builtins.html#int">int</a>,&nbsp;<a href="builtins.html#int">int</a><br>
 &nbsp;&nbsp;&nbsp;&nbsp;amount&nbsp;of&nbsp;pages<br>
 &nbsp;&nbsp;&nbsp;&nbsp;ID&nbsp;of&nbsp;the&nbsp;first&nbsp;element&nbsp;in&nbsp;the&nbsp;page<br>
 &nbsp;&nbsp;&nbsp;&nbsp;ID&nbsp;of&nbsp;the&nbsp;last&nbsp;element&nbsp;in&nbsp;the&nbsp;page</tt></dd></dl>
  <dl><dt><a name="-parse_escapes"><strong>parse_escapes</strong></a>(inp: str)</dt><dd><tt>Convert&nbsp;all&nbsp;escape&nbsp;code&nbsp;sequences&nbsp;into&nbsp;actual&nbsp;symbols<br>
 The&nbsp;list&nbsp;of&nbsp;the&nbsp;escape&nbsp;codes&nbsp;is&nbsp;similar&nbsp;to&nbsp;Python&nbsp;string&nbsp;escape&nbsp;sequences</tt></dd></dl>
- <dl><dt><a name="-validate_convert_args"><strong>validate_convert_args</strong></a>(argtypes: Tuple[Union[str, int, float, bool, NoneType], str], args: Sequence) -&gt; Union[Sequence[object], int]</dt><dd><tt>Validate&nbsp;and&nbsp;cast&nbsp;string&nbsp;variables&nbsp;into&nbsp;their&nbsp;specified&nbsp;type&nbsp;from&nbsp;argtypes</tt></dd></dl>
+ <dl><dt><a name="-validate_convert_args"><strong>validate_convert_args</strong></a>(argtypes: Tuple[Union[str, int, float, bool, NoneType, admin_console.CustomType], str], args: Sequence) -&gt; Union[Sequence[object], int]</dt><dd><tt>Validate&nbsp;and&nbsp;cast&nbsp;string&nbsp;variables&nbsp;into&nbsp;their&nbsp;specified&nbsp;type&nbsp;from&nbsp;argtypes</tt></dd></dl>
 </td></tr></table><p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
 <tr bgcolor="#55aa55">
@@ -947,7 +1720,7 @@ The&nbsp;list&nbsp;of&nbsp;the&nbsp;escape&nbsp;codes&nbsp;is&nbsp;similar&nbsp;
     
 <tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
 <td width="100%"><strong>Any</strong> = typing.Any<br>
-<strong>ArgumentType</strong> = typing.Union[str, int, float, bool, NoneType]<br>
+<strong>ArgumentType</strong> = typing.Union[str, int, float, bool, NoneType, admin_console.CustomType]<br>
 <strong>Awaitable</strong> = typing.Awaitable<br>
 <strong>Callable</strong> = typing.Callable<br>
 <strong>Coroutine</strong> = typing.Coroutine<br>
@@ -955,17 +1728,18 @@ The&nbsp;list&nbsp;of&nbsp;the&nbsp;escape&nbsp;codes&nbsp;is&nbsp;similar&nbsp;
 <strong>List</strong> = typing.List<br>
 <strong>Mapping</strong> = typing.Mapping<br>
 <strong>MutableMapping</strong> = typing.MutableMapping<br>
+<strong>MutableSequence</strong> = typing.MutableSequence<br>
 <strong>Optional</strong> = typing.Optional<br>
 <strong>Sequence</strong> = typing.Sequence<br>
 <strong>Set</strong> = typing.Set<br>
 <strong>Tuple</strong> = typing.Tuple<br>
 <strong>Type</strong> = typing.Type<br>
 <strong>Union</strong> = typing.Union<br>
-<strong>allescapesplitter</strong> = re.compile('(\\\\\\\\|\\\\x[0-9a-fA-F]{2}|\\\\u[0-9a-fA-F]{4}|\\\\[0-7]{1,3}|\\\\[abfnrtv])')<br>
+<strong>allescapesplitter</strong> = re.compile('(\\\\\\\\|\\\\x[0-9a-fA-F]{2}|\\\\u[0-9a-fA-F]{4}|\\\\[0-7]{1,3}|\\\\[abfnrtv"\\\'])')<br>
 <strong>argsplitter</strong> = re.compile('(?&lt;!\\\\)".*?(?&lt;!\\\\)"|(?&lt;!\\\\)\'.*?(?&lt;!\\\\)\'|[^ ]+')<br>
 <strong>backslasher</strong> = re.compile('(?&lt;!\\\\)\\\\(.)')<br>
 <strong>hexescapefinder</strong> = re.compile('(?&lt;!\\\\)\\\\x[0-9a-fA-F]{2}')<br>
 <strong>octal</strong> = re.compile('\\\\[0-7]{1,3}')<br>
 <strong>quoted</strong> = re.compile('(?P&lt;quote&gt;["\\\']).*?(?P=quote)')<br>
-<strong>single_char_escaper</strong> = {' ': ' ', 'a': '<font color="#c040c0">\x07</font>', 'b': '<font color="#c040c0">\x08</font>', 'f': '<font color="#c040c0">\x0c</font>', 'n': '<font color="#c040c0">\n</font>', 'r': '<font color="#c040c0">\r</font>', 't': '<font color="#c040c0">\t</font>', 'v': '<font color="#c040c0">\x0b</font>'}</td></tr></table>
+<strong>single_char_escaper</strong> = {' ': ' ', '"': '"', "'": "'", 'a': '<font color="#c040c0">\x07</font>', 'b': '<font color="#c040c0">\x08</font>', 'f': '<font color="#c040c0">\x0c</font>', 'n': '<font color="#c040c0">\n</font>', 'r': '<font color="#c040c0">\r</font>', 't': '<font color="#c040c0">\t</font>', 'v': '<font color="#c040c0">\x0b</font>'}</td></tr></table>
 </body></html>

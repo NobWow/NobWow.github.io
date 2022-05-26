@@ -398,6 +398,7 @@ Example<br>
  <dl><dt><a name="-rawprint"><strong>rawprint</strong></a>(*args, sep=' ', **kwargs)</dt><dd><tt>Standard&nbsp;print&nbsp;wrapper,&nbsp;but&nbsp;with&nbsp;end='<br>
 '</tt></dd></dl>
  <dl><dt><a name="-truelen"><strong>truelen</strong></a>(text: str) -&gt; int</dt><dd><tt>Returns&nbsp;amount&nbsp;of&nbsp;visible-on-terminal&nbsp;characters&nbsp;in&nbsp;the&nbsp;string</tt></dd></dl>
+ <dl><dt><a name="-truelen_list"><strong>truelen_list</strong></a>(seq: Sequence[str]) -&gt; int</dt><dd><tt>Returns&nbsp;amount&nbsp;of&nbsp;visible-on-terminal&nbsp;characters&nbsp;in&nbsp;the&nbsp;sequence&nbsp;of&nbsp;strings</tt></dd></dl>
 </td></tr></table><p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
 <tr bgcolor="#55aa55">
@@ -405,7 +406,10 @@ Example<br>
 <font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
     
 <tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
-<td width="100%"><strong>CRITICAL</strong> = 50<br>
+<td width="100%"><strong>Any</strong> = typing.Any<br>
+<strong>CRITICAL</strong> = 50<br>
+<strong>Callable</strong> = typing.Callable<br>
+<strong>Coroutine</strong> = typing.Coroutine<br>
 <strong>DEBUG</strong> = 10<br>
 <strong>ERROR</strong> = 40<br>
 <strong>INFO</strong> = 20<br>
@@ -416,7 +420,7 @@ Example<br>
 <strong>Tuple</strong> = typing.Tuple<br>
 <strong>Union</strong> = typing.Union<br>
 <strong>WARNING</strong> = 30<br>
-<strong>__warningregistry__</strong> = {'version': 1}<br>
+<strong>__warningregistry__</strong> = {'version': 0}<br>
 <strong>ansi_escape</strong> = re.compile('(\\x9B|\\x1B\\[)[0-?]*[ -\\/]*[@-~]')<br>
 <strong>do_backspace</strong> = '<font color="#c040c0">\x08\x1b</font>[0K'<br>
 <strong>loop</strong> = &lt;_UnixSelectorEventLoop running=False closed=False debug=False&gt;</td></tr></table>
